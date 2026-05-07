@@ -1,4 +1,18 @@
-export default function Hero({ onNewPermitClick, onRenewalClick }) {
+import { useNavigate } from 'react-router-dom';
+
+export default function Hero() {
+  const navigate = useNavigate();
+
+  const handleNewBusinessClick = () => {
+    console.log('New Business clicked');
+    navigate('/new');
+  };
+
+  const handleRenewalClick = () => {
+    console.log('Renewal clicked');
+    navigate('/renewal'); // Create this route if needed
+  };
+
   return (
     <section id="about" className="hero-frontpage fade-in visible">
       {/* Decorative background circles */}
@@ -29,17 +43,14 @@ export default function Hero({ onNewPermitClick, onRenewalClick }) {
         <div className="hero-ctas">
           <button 
             type="button"
-            onClick={() => {
-              console.log('New Business clicked');
-              onNewPermitClick();
-            }}
-                      className="hero-btn hero-btn-primary"
+            onClick={handleNewBusinessClick}
+            className="hero-btn hero-btn-primary"
           >
             New Business
           </button>
 
           <button 
-            onClick={onRenewalClick}
+            onClick={handleRenewalClick}
             className="hero-btn hero-btn-primary"
           >
             Renewal

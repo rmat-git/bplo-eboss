@@ -74,7 +74,7 @@ export const REQUIREMENTS = [
         ],
       },
     ],
-    buttonLabel: 'Offices',
+    buttonLabel: 'Regulatory Offices',
     buttonAction: 'openOfficeModal',
   },
   {
@@ -100,73 +100,3 @@ export const REQUIREMENTS = [
   },
 ];
 
-// ─── Offices ──────────────────────────────────────────────────────────────────
-// 
-// Extended data structure supports:
-//   • name: Short abbreviation (e.g., 'CHO')
-//   • fullName: Full office name (e.g., 'City Health Office')
-//   • address: Physical address
-//   • phone: Contact phone number
-//   • email: Contact email
-//   • hours: Operating hours
-//   • description: Brief description of services
-//   • services: Array of services offered
-//   • link: Link to office portal/registration
-//   • website: Link to office website
-//
-
-export const OFFICES = [
-  {
-    name: 'CHO',
-    fullName: 'City Health Office',
-    address: '1st Floor, Bacolod City Government Center',
-    phone: '(034) 431 3673',
-    email: 'cho@bacolodcity.gov.ph',
-    hours: 'Monday - Friday, 8:00 AM - 5:00 PM',
-    description: 'Provides health certificates and sanitation requirements for business establishments.',
-    link: 'https://linkplaceholder.com/cho',
-    website: 'https://bacolodcityhealth.com/esd/',
-  },
-  {
-    name: 'OBO',
-    fullName: 'Office of the Building Official',
-    address: '2nd Floor South Wing- Bacolod City Government Center',
-    phone: '(034) 433- 8286',
-    email: 'obo@bacolodcity.gov.ph',
-    hours: 'Monday - Friday, 8:00 AM - 5:00 PM',
-    description: 'Handles building permits and structural safety compliance.',
-    link: 'https://linkplaceholder.com/obo',
-    website: 'link.placeholder.com/obo',
-  },
-  {
-    name: 'BFP',
-    fullName: 'Bureau of Fire Protection',
-    address: 'Fire Station #3, Makati City',
-    phone: '(034) 434-5022',
-    email: 'bacolodcityfs@bacolodcity.gov.ph',
-    hours: 'Monday - Friday, 7:00 AM - 4:00 PM',
-    description: 'Issues fire safety permits and conducts fire safety inspections.',
-    link: 'https://linkplaceholder.com/bfp',
-    website: 'https://fsis.e-bfp.com/',
-  },
-  {
-    name: 'BENRO',
-    fullName: 'Business and Establishment Registration Office',
-    address: 'Bacolod City Government Center, Circumferential Rd',
-    phone: '0995-187-4725',
-    email: 'benro@bacolodcity.gov.ph',
-    hours: 'Monday - Friday, 8:30 AM - 4:30 PM',
-    description: 'Central office for business licensing and permit coordination.',
-    link: 'https://linkplaceholder.com/benro',
-  },
-  {
-    name: 'CPDO',
-    fullName: 'City Planning and Development Office',
-    address: '1st Floor, Bacolod City Government Center',
-    phone: '(034) 434-3184',
-    email: 'cpdo@bacolodcity.gov.ph',
-    hours: 'Monday - Friday, 8:00 AM - 5:00 PM',
-    description: 'Ensures business location compliance with zoning and city development plans.',
-    link: 'https://linkplaceholder.com/cpdo',
-  },
-];

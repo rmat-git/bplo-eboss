@@ -1,26 +1,24 @@
 /* ============================================================
-   NEWPAGE STYLES
-   Location: src/new/NewPage.css
+   RENEWALPAGE STYLES
+   Location: src/renewal/RenewalPage.css
    
-   Page-specific styles for the New Business Permit application.
-   Global styles (design tokens, buttons, header, footer) are in App.css
+   Page-specific styles for the Business Permit Renewal application.
+   Uses CSS variables defined in your global App.css/index.css
    ============================================================ */
 
 /* ============================================================
-   HERO SECTION (NewPage)
+   HERO SECTION (RenewalPage)
 
-   ↕ HEIGHT CONTROL
-   The hero height is driven by padding-top and padding-bottom.
-   Increase both values to make it taller, decrease to make it shorter.
-
-   Current:  padding-top: var(--spacing-3xl)   ≈ tall
-             padding-bottom: var(--spacing-2xl) ≈ medium-tall
-
-   Taller  → padding: var(--spacing-4xl) var(--page-gutter) var(--spacing-3xl)
-   Shorter → padding: var(--spacing-xl)  var(--page-gutter) var(--spacing-lg)
-   Fixed   → min-height: 300px (set a fixed minimum if you prefer)
+   Color customization:
+   If you want a different accent color for renewal (e.g., blue instead of orange),
+   either:
+   A) Define --color-accent-renewal in your global CSS
+   B) Replace var(--color-accent-renewal) below with your preferred color variable
+   C) Change to: color: var(--color-accent-warm) to match NewPage
+   
+   Current: Uses --color-accent-warm (will match NewPage color scheme)
    ============================================================ */
-.hero-newpage {
+.hero-renewal {
   background: linear-gradient(160deg, #fff8f0 0%, #ffffff 45%, #fff3e6 100%);
   padding: clamp(25vh, 20vw, 12vh) 1.25rem clamp(10vh, 12vw, 10vh);
   text-align: center;
@@ -35,7 +33,7 @@
   gap: var(--spacing-md);
 }
 
-/* "Ready to Register?" — big hero heading */
+/* "Time to Renew?" — big hero heading */
 .hero__title {
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: var(--font-weight-extrabold);
@@ -44,14 +42,14 @@
   margin: 0;
 }
 
-/* Orange highlight on "Register?" */
+/* Accent highlight on "Renew?" - uses your design system */
 .hero__title em {
   font-style: normal;
   color: var(--color-accent-warm);
 }
 
-/* Slight breathing room around the Register button */
-.hero__register-btn {
+/* Slight breathing room around the Renew button */
+.hero__renew-btn {
   margin: var(--spacing-sm) 0;
   padding: var(--spacing-md) var(--spacing-3xl);
   font-size: 1.15rem;
@@ -126,8 +124,7 @@
 
 .step-card__badge {
   position: relative;
-  display: flex;
-  align-items: center;
+  display: flex;  align-items: center;
   justify-content: center;
   width: 80px;
   height: 80px;
@@ -355,68 +352,66 @@
 }
 
 .requirement-card__sub-action-icon {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
-/* Link styling within sub-items */
-.requirement-card__sub-link {
+.requirement-card__action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   color: var(--color-accent-warm);
   text-decoration: none;
   font-weight: var(--font-weight-semibold);
-  transition: all var(--transition-base);
-  margin-left: 4px;
-}
-
-.requirement-card__sub-link:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-}
-
-/* Action link indented: "Click here for..." */
-.requirement-card__sub-action {
-  padding-left: var(--spacing-lg);
-  margin-bottom: 12px;
-}
-
-/* Action link styling - simple underlined link with icon */
-.requirement-card__action-link {
-  color: var(--color-accent-warm);
-  background: none;
-  text-decoration: underline;
-  padding: 0;
-  border-radius: 0;
-  font-weight: var(--font-weight-regular);
-  font-size: 0.95rem;
-  transition: all var(--transition-base);
-  cursor: pointer;
-  line-height: 1.4;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-}
-
-/* Icon styling */
-.requirement-card__action-icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
+  font-size: 0.9rem;
   transition: all var(--transition-base);
 }
 
 .requirement-card__action-link:hover {
-  opacity: 0.8;
   text-decoration: underline;
 }
 
-.requirement-card__action-link:hover .requirement-card__action-icon {
-  transform: translateX(2px) translateY(-2px);
+.requirement-card__action-icon {
+  width: 1rem;
+  height: 1rem;
 }
 
-.requirement-card__action-link:active {
-  opacity: 0.7;
+.requirement-card__sub-link {
+  color: var(--color-accent-warm);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: text-decoration var(--transition-base);
 }
+
+.requirement-card__sub-link:hover {
+  text-decoration: underline;
+}
+
+.requirement-card__footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.requirement-card__button {
+  background: var(--color-accent-warm);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.requirement-card__button:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-sm);
+}
+
 
 /* ============================================================
    REQUIREMENT CARD — FOOTER & BUTTON
@@ -459,11 +454,13 @@
 .cta-section {
   padding: var(--spacing-2xl) var(--page-gutter);
   background: var(--color-bg-primary);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cta-section__inner {
-  width: 100%;
-  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -475,49 +472,46 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-sm);
+  flex-shrink: 0;
 }
 
 .cta-section__qr {
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
+  background: var(--color-accent-light);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: var(--color-accent-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
-  text-align: center;
-  padding: var(--spacing-sm);
-  line-height: 1.4;
 }
 
 .cta-section__qr-label {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--color-text-muted);
   text-align: center;
-  max-width: 110px;
+  max-width: 120px;
 }
 
 .cta-section__divider {
   width: 1px;
-  height: 100px;
+  height: 120px;
   background: var(--color-border);
+  flex-shrink: 0;
 }
 
 .cta-section__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  max-width: 440px;
+  flex: 1;
 }
 
 .cta-section__heading {
-  font-size: 1.6rem;
-  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-extrabold);
   color: var(--color-text-primary);
   line-height: 1.2;
+  margin: 0 0 var(--spacing-md) 0;
 }
 
 .cta-section__heading em {
@@ -526,230 +520,84 @@
 }
 
 .cta-section__body {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-lg) 0;
 }
 
 .cta-section__actions {
   display: flex;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-}
-
-/* ============================================================
-   RESPONSIVE — DESKTOP  (> 768px)
-   Lock Requirements section inner content to 1200px
-   ============================================================ */
-@media (min-width: 769px) {
-  .requirements-section__header,
-  .requirements-container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE — TABLET  (≤ 768px)
-   ============================================================ */
-@media (max-width: 768px) {
-  .newpage__content {
-    padding: 0 var(--page-gutter);
-  }
-
-  /* Stepper — vertical stack */
-  .stepper {
-    padding: var(--spacing-xl) var(--page-gutter);
-  }
-
-  .stepper__container {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-lg);
-  }
-
-  .stepper__connector {
-    width: 2px;
-    height: 32px;
-    max-width: none;
-    flex: none;
-  }
-
-  .step-card {
-    max-width: 400px;
-    width: 100%;
-  }
-
-  /* Requirements */
-  .requirements-section {
-    padding: var(--spacing-xl) var(--page-gutter);
-  }
-
-  .requirements-container {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-  }
-
-  /* CTA */
-  .cta-section {
-    padding: var(--spacing-xl) var(--page-gutter);
-  }
-
-  .cta-section__inner {
-    flex-direction: column;
-    gap: var(--spacing-xl);
-    text-align: center;
-  }
-
-  .cta-section__divider {
-    width: 80px;
-    height: 1px;
-  }
-
-  .cta-section__actions {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* ============================================================
-   MOBILE BOTTOM SHEET (offices modal — ≤ 768px only)
-   ============================================================ */
-
-/* Overlay: anchors sheet to bottom */
-.modal-overlay--sheet {
-  align-items: flex-end !important;
-  padding: 0 !important;
-  justify-content: center;
-}
-
-/* The sheet panel */
-.modal-sheet {
-  background: var(--color-bg-primary);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  width: 100%;
-  max-height: 88vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* Drag handle */
-.modal-sheet__handle-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0 4px;
-  flex-shrink: 0;
-}
-
-.modal-sheet__handle {
-  width: 36px;
-  height: 4px;
-  background: var(--color-border);
-  border-radius: var(--radius-full);
-}
-
-/* Sheet header row */
-.modal-sheet__header {
-  display: flex;
+  gap: var(--spacing-md);
   align-items: center;
-  justify-content: space-between;
-  padding: 8px var(--spacing-lg) 12px;
-  flex-shrink: 0;
 }
 
-.modal-title--sheet {
-  font-size: 1.25rem;
-  margin: 0;
-}
-
-.modal-close--sheet {
-  position: static !important;
-  width: 34px;
-  height: 34px;
-  border-radius: var(--radius-full);
-  background: var(--color-accent-light);
+.button--primary {
+  background: var(--color-accent-warm);
+  color: white;
   border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  flex-shrink: 0;
   transition: all var(--transition-base);
 }
 
-.modal-close--sheet:hover {
-  color: var(--color-text-primary);
-  transform: none;
+.button--primary:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Horizontally scrollable tab bar */
-.modal-sheet__tabs {
-  display: flex;
-  gap: 6px;
-  padding: 0 var(--spacing-lg) var(--spacing-md);
-  overflow-x: auto;
-  flex-shrink: 0;
-  scrollbar-width: none;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.modal-sheet__tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.modal-sheet__tab {
-  padding: 5px 14px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
+.button--ghost {
   background: transparent;
-  color: var(--color-text-muted);
-  font-size: 0.8rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  white-space: nowrap;
   transition: all var(--transition-base);
-  font-family: inherit;
 }
 
-.modal-sheet__tab--active {
-  background: var(--color-accent-medium);
-  color: var(--color-text-primary);
+.button--ghost:hover {
+  background: var(--color-accent-light);
   border-color: var(--color-accent-warm);
 }
 
-/* Scrollable body */
-.modal-sheet__body {
-  overflow-y: auto;
-  overscroll-behavior: none;
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl);
-  flex: 1;
-  animation: sheetFadeSlide 0.2s ease;
+/* Fade-in animation */
+.fade-in {
+  opacity: 1;
+  animation: fadeInUp 0.6s ease;
 }
 
-@keyframes sheetFadeSlide {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+.fade-in.visible {
+  opacity: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ============================================================
    RESPONSIVE — TABLET  (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
-  .newpage__content {
+  .renewalpage__content {
     padding: 0;
     width: 100%;
-    /* Header padding is already set at 0, kept by --header-height var */
   }
 
   /* Hero */
-  .hero-newpage {
+  .hero-renewal {
     padding: var(--spacing-2xl) var(--page-gutter) var(--spacing-lg);
     gap: var(--spacing-md);
     width: 100%;
@@ -794,23 +642,6 @@
     width: 100%;
   }
 
-  /* Modal */
-  .modal-content {
-    max-width: 90%;
-    padding: var(--spacing-xl);
-  }
-
-  .offices-container {
-    overflow: hidden;
-  }
-
-  .office-card {
-    padding: var(--spacing-md);
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
   /* CTA */
   .cta-section {
     padding: var(--spacing-xl) var(--page-gutter);
@@ -838,14 +669,14 @@
    ============================================================ */
 @media (max-width: 480px) {
   /* Ensure headspace for fixed header on mobile */
-  .newpage__content {
+  .renewalpage__content {
     padding-top: var(--header-height);
     width: 100%;
     max-width: 100%;
   }
 
   /* Hero section — optimized for mobile */
-  .hero-newpage {
+  .hero-renewal {
     gap: var(--spacing-sm);
     min-height: auto;
     width: 100%;
@@ -858,7 +689,7 @@
     line-height: 1.15;
   }
 
-  .hero__register-btn {
+  .hero__renew-btn {
     padding: var(--spacing-sm) var(--spacing-xl);
     font-size: 0.95rem;
     width: 100%;
@@ -912,16 +743,6 @@
     grid-template-columns: 1fr;
   }
 
-  .offices-section {
-    max-width: 100%;
-    width: 100%;
-    padding: var(--spacing-xl) var(--page-gutter);
-  }
-
-  .offices-container {
-    max-width: 100%;
-  }
-
   .cta-section {
     max-width: 100%;
     width: 100%;
@@ -930,6 +751,7 @@
 
   .cta-section__actions {
     flex-direction: column;
+    width: 100%;
   }
 
   .requirement-card__button {
@@ -940,51 +762,12 @@
     display: none;
   }
 
-  .modal-overlay {
-    padding: var(--spacing-sm);
+  .cta-section__qr {
+    width: 100px;
+    height: 100px;
   }
 
-  .modal-content {
-    padding: var(--spacing-lg);
-    max-height: 85vh;
-  }
-
-  .modal-close {
-    width: 36px;
-    height: 36px;
-    font-size: 1.5rem;
-  }
-
-  .offices-container {
-    overflow: hidden;
-    gap: var(--spacing-lg);
-  }
-
-  .office-card {
-    padding: var(--spacing-sm);
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .office-card__header {
-    padding-bottom: var(--spacing-md);
-  }
-
-  .office-card__fullname {
-    font-size: 0.95rem;
-  }
-
-  .office-card__label {
-    font-size: 0.85rem;
-  }
-
-  .office-card__text,
-  .office-card__service-item {
-    font-size: 0.85rem;
-  }
-
-  .office-card__footer {
-    flex-wrap: wrap;
+  .cta-section__qr-label {
+    max-width: 100px;
   }
 }

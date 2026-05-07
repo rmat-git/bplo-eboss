@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeroSection from './components/Hero';
 import Stepper from './components/Stepper';
 import RequirementsSection from './components/RequirementsSection';
 import CTASection from './components/CTASection';
-import OfficeModal from './modals/OfficesModal';
 import './NewPage.css';
-import { STEPS, REQUIREMENTS, OFFICES } from '../data/newpage';
+import { STEPS, REQUIREMENTS } from '../data/newpage';
 
 // ─── NewPage ──────────────────────────────────────────────────────────────────
 // Displays the complete business registration information flow:
@@ -13,7 +12,6 @@ import { STEPS, REQUIREMENTS, OFFICES } from '../data/newpage';
 // Data Sources (from src/data/newpage.js):
 //   • STEPS - Three-step process (Register → Assessment → Claim)
 //   • REQUIREMENTS - Documents needed per step with action links
-//   • OFFICES - Payment centers/offices (CHO, OBO, BFP, BENRO, CPDO)
 //
 // Key Features:
 //   ✓ Step 1: Business Name Registration with action links
@@ -21,23 +19,12 @@ import { STEPS, REQUIREMENTS, OFFICES } from '../data/newpage';
 //     - "Click here for SEC registration" (Corporation/Partnership)
 //     - "Click here for CDA registration" (Cooperative)
 //   ✓ Step 2: Assessment & Payment with "Find Payment Centers" button
+//     - Links to dedicated /offices page
 //   ✓ Step 3: Permit Claim documentation
-//   ✓ Office Modal: Shows payment centers when button clicked
 // ──────────────────────────────────────────────────────────────────────────────
 
 function NewPage({ onRegisterClick }) {
-  const [isOfficeModalOpen, setIsOfficeModalOpen] = useState(false);
-
-  const handleOfficeModalOpen = () => {
-    setIsOfficeModalOpen(true);
-  };
-
-  const handleOfficeModalClose = () => {
-    setIsOfficeModalOpen(false);
-  };
-
   return (
-    // ✅ FIXED: Changed from .header-offset to .newpage__content
     <div className="newpage newpage__content">
       {/* ─── Hero Section ─────────────────────────────────────────────────── */}
       {/* Hero with main Register button */}
@@ -82,7 +69,7 @@ function NewPage({ onRegisterClick }) {
         - Step 2: Assessment & Payment
           • Billing summary info
           • Payment Options
-          • "Find Payment Centers" button (opens OfficeModal)
+          • "Find Payment Centers" button (navigates to /offices page)
         
         - Step 3: Permit Claim
           • Walk-in documentation requirements
@@ -90,22 +77,6 @@ function NewPage({ onRegisterClick }) {
       */}
       <RequirementsSection 
         requirements={REQUIREMENTS}
-        onOfficeModalOpen={handleOfficeModalOpen}
-      />
-
-      {/* ─── Office Modal ─────────────────────────────────────────────────── */}
-      {/* 
-        Shows payment centers when "Find Payment Centers" button is clicked:
-        - CHO (City Health Office)
-        - OBO (Office of the Building Official)
-        - BFP (Bureau of Fire Protection)
-        - BENRO (Business and Establishment Registration Office)
-        - CPDO (City Planning and Development Office)
-      */}
-      <OfficeModal 
-        isOpen={isOfficeModalOpen} 
-        onClose={handleOfficeModalClose}
-        offices={OFFICES}
       />
 
       {/* ─── CTA Section ──────────────────────────────────────────────────── */}
