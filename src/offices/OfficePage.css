@@ -85,20 +85,40 @@
   margin-bottom: var(--spacing-xl);
 }
 
-.clearance-group-section__title {
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
+/* ============================================================
+   SECTION HEADERS - REQUIRED
+   ============================================================ */
+.clearance-group-section__title--required {
+ font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: var(--font-weight-extrabold);
-  color: var(--color-text-primary);
   text-transform: uppercase;
-  margin: 0;
+  color: var(--color-accent-warm);
 }
 
-.clearance-group-section__subtitle {
-  font-size: 1rem;
+.clearance-group-section__subtitle--required {
+  font-size: 0.95rem;
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
+  width: 100%;
   line-height: 1.6;
-  margin: var(--spacing-xs) 0 0 0;
+}
+
+/* ============================================================
+   SECTION HEADERS - SPECIAL
+   ============================================================ */
+.clearance-group-section__title--special {
+ font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-weight: var(--font-weight-extrabold);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.clearance-group-section__subtitle--special {
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+  width: 100%;
+  line-height: 1.6;
 }
 
 /* ============================================================
@@ -418,6 +438,49 @@
 }
 
 /* ============================================================
+   BACK BUTTON
+   ============================================================ */
+.offices-page__back-button-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-2xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.offices-page__back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: transparent;
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.offices-page__back-button:hover {
+  background: var(--color-accent-light);
+  transform: translateX(-2px);
+}
+
+.offices-page__back-button:active {
+  transform: translateX(0);
+}
+
+.offices-page__back-button-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
    RESPONSIVE — TABLET (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
@@ -428,7 +491,9 @@
 
   .clearance-group-section { padding: var(--spacing-xl) var(--page-gutter); }
   .clearance-group-section__inner { padding: 0; gap: 0; }
-  .clearance-group-section__title { font-size: 1.75rem; }
+  
+  .clearance-group-section__title--required { font-size: 1.75rem; }
+  .clearance-group-section__title--special { font-size: 1.75rem; }
 
   .offices-page__tabs-container {
     padding: 0;
@@ -459,8 +524,12 @@
 
   .clearance-group-section { padding: var(--spacing-lg) var(--spacing-md); }
   .clearance-group-section__inner { padding: 0; gap: 0; border-radius: 0; }
-  .clearance-group-section__title { font-size: 1.4rem; }
-  .clearance-group-section__subtitle { font-size: 0.9rem; }
+  
+  .clearance-group-section__title--required { font-size: 1.4rem; }
+  .clearance-group-section__subtitle--required { font-size: 0.9rem; }
+  
+  .clearance-group-section__title--special { font-size: 1.4rem; }
+  .clearance-group-section__subtitle--special { font-size: 0.9rem; }
 
   .offices-page__tabs-container { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
   .offices-page__tabs-scroll { padding: var(--spacing-xs); }
@@ -486,4 +555,15 @@
 
   .office-card__req-item { font-size: 0.85rem; padding-left: var(--spacing-md); }
   .office-card__applicable-tag { font-size: 0.75rem; padding: 2px 8px; }
+
+  .offices-page__back-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+
+  .offices-page__back-button-icon {
+    width: 16px;
+    height: 16px;
+  }
 }

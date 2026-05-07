@@ -38,7 +38,7 @@ export const REQUIREMENTS = [
           { label: 'Representative: Authorization Letter / SPA with IDs', link: null },
         ],
       },
-      "Business ID Number/BAN (5-Digit Business Account Number",
+      "Business ID Number/BAN (5-Digit Business Account Number)",
       "All Required and Up-to-Date Clearances",
     ],
   },

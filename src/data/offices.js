@@ -153,7 +153,7 @@ export const OFFICES = [
         label: 'For Renewals',
         items: [
           'Annual Inspection Billing with O.R. / Certificate of Annual Inspection',
-          'Business Permit Application'
+          ' Business Permit Application'
         ],
       },
       {
@@ -204,8 +204,11 @@ export const OFFICES = [
     link: '',
     description: 'Issues clearances for agriculture-related businesses and agri-product establishments.',
     services: ['City Agriculture Office Clearance'],
-    requirements: [],   // add specific requirements when available
-    applicableTo: ['Agri Products', 'Agriculture-related Businesses'],
+    requirements: [
+      'Duly Filled-Out and Signed Application Form',
+      'Certification from the Bureau of Animal Industry (BAI)'
+    ],   // add specific requirements when available
+    applicableTo: ['Agriculture-related Businesses'],
   },
 
   {
@@ -219,7 +222,10 @@ export const OFFICES = [
     link: '',
     description: 'Issues clearances for businesses dealing in meat and poultry products.',
     services: ['City Veterinary Office Clearance'],
-    requirements: [],
+    requirements: [
+      'City Veterinary Office Clearance',
+      'Bureau of Animal Industry (BAI) Certification'
+    ],
     applicableTo: ['Meat Products', 'Poultry Products'],
   },
 
@@ -233,8 +239,26 @@ export const OFFICES = [
     website: '',
     link: '',
     description: 'Issues clearances for tourism-related establishments and service providers.',
-    services: ['City Tourism Office Clearance'],
-    requirements: [],
+    services: [
+      'City Tourism Office Clearance',
+      'Provision of Tour Assistance',
+      'Registration Of Tourism-Related Establishments'
+    ],
+    requirements: [
+      {
+        label: 'For New Tourism-related Businesses',
+        items: [
+          'Duly Filled-Out and Signed Application Form',
+          'Clearance'
+        ],
+      },
+      {
+        label: 'For Renewal of Tourism-related Businesses',
+        items: [
+          'Duly Filled-Out and Signed Application Form',
+        ],
+      },
+    ],
     applicableTo: ['Tourism-related Businesses'],
   },
 
@@ -248,14 +272,53 @@ export const OFFICES = [
     website: '',
     link: '',
     description: 'Issues City Ad / City Administrator Clearance for businesses operating in the three major markets and Manukan Country.',
-    services: ['City Ad Clearance', 'City Administrator Clearance'],
-    requirements: [],
-    applicableTo: ['3 Major Markets', 'Manukan Country'],
+    services: [
+      'City Administrator Clearance',
+      'Request of MABBCAB (Manual Application)',
+      'Issuance of Certificate of Recognition',
+      'Endorsement Letter to Business Permits & Licensing Office for Business Permit Renewal (Transportation-related Businesses)',
+      'Issuance of Identification Card',
+    ],
+    requirements: [
+      {
+        label: 'For Offices / Department Heads / Admin. Officers',
+        items: [
+          ' Daily Trip Ticket (2 Original Copies) ',
+          'Travel Order (outside Bacolod City)'
+        ],
+      },
+      {
+        label: 'For Existing block/ stall / table awardee or an actual occupant in any public market',
+        items: [
+          'COMELEC ID or Certification from COMELEC (2 photocopies)',
+          'Certification of Barangay Residency (2 photocopies)',
+          'Certification from the market collector’s office (1 original copy)',
+        ],
+      },
+      {
+        label: ' For Modernize / Traditional Jeepney Coordinators',
+        items: [
+          'OR / CR of Vehicle (2 photocopies)',
+          'Updated Franchise Verification (Present the Original Copy and 2 Photocopies)',
+          'Mayor\'s Permit (If applicable)',
+          'Special Permit',
+        ]
+      },
+      {
+        label: 'For Street Vendors, ambulant vendors or peddlers ',
+        items: [
+          'COMELEC ID or Certification from COMELEC (2 photocopies)',
+          'Registration Form',
+          'Heatlh Card (2 photocopies)',
+        ],
+      },
+    ],
+    applicableTo: ['Manukan Country'],
   },
 
   {
     name: 'BTTMD',
-    fullName: 'Business Tax and Trade Management Division',
+    fullName: 'Bacolod Traffic and Transport Management Department',
     address: '',
     phone: '',
     email: '',
@@ -269,8 +332,8 @@ export const OFFICES = [
   },
 
   {
-    name: 'COL',
-    fullName: 'City Cooperatives and Livelihood Development Office',
+    name: 'RONO',
+    fullName: 'Resolution of No Objection (RONO)',
     address: '',
     phone: '',
     email: '',
