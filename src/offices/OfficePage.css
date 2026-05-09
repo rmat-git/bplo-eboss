@@ -48,6 +48,58 @@
 }
 
 /* ============================================================
+   HERO SECTION TOGGLE (Required / Special Clearances)
+   ============================================================ */
+.hero__section-toggle {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero__section-toggle-btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  white-space: nowrap;
+  min-width: 180px;
+  text-align: center;
+}
+
+.hero__section-toggle-btn:hover {
+  border-color: var(--color-accent-warm);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  color: var(--color-accent-warm);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.hero__section-toggle-btn--active {
+  background: var(--color-accent-warm);
+  color: white;
+  border-color: var(--color-accent-warm);
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 2px 8px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.hero__section-toggle-btn--active:hover {
+  background: var(--color-accent-warm-darker, #d97f1a);
+  border-color: var(--color-accent-warm-darker, #d97f1a);
+  color: white;
+}
+
+/* ============================================================
    CLEARANCE GROUP SECTION WRAPPER
    ============================================================ */
 .clearance-group-section {
@@ -234,51 +286,59 @@
   white-space: nowrap;
 }
 
+.office-card__applicable-tag {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.1);
+  color: var(--color-accent-warm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  border: 1px solid rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+/* ============================================================
+   OFFICE CARD CONTENT
+   ============================================================ */
 .office-card__content-section {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 }
 
 .office-card__divider {
   height: 1px;
   background: var(--color-border);
-  margin-bottom: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
 }
 
-/* .office-card__fullname {
-  font-size: 1.1rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  line-height: 1.4;
-  margin: 0 0 var(--spacing-md) 0;
-} */
-
 .office-card__info {
-  margin-bottom: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .office-card__label {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: 4px;
+  letter-spacing: 0.5px;
 }
 
 .office-card__text {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-text-primary);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.5;
 }
 
 .office-card__contact-link {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-accent-warm);
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
   transition: all var(--transition-base);
+  word-break: break-word;
 }
 
 .office-card__contact-link:hover {
@@ -287,47 +347,59 @@
 }
 
 .office-card__description {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
   line-height: 1.6;
-  margin: var(--spacing-md) 0;
+  margin: var(--spacing-sm) 0 0 0;
+  padding: var(--spacing-md);
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 3px solid var(--color-accent-warm);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
+/* ============================================================
+   SERVICES LIST
+   ============================================================ */
 .office-card__service-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-sm);
 }
 
 .office-card__service-item {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-text-primary);
-  line-height: 1.5;
-  padding-left: var(--spacing-md);
+  padding-left: var(--spacing-lg);
   position: relative;
 }
 
 .office-card__service-item::before {
-  content: '–';
+  content: '✓';
   position: absolute;
   left: 0;
-  color: var(--color-accent-medium);
+  color: var(--color-accent-warm);
+  font-weight: var(--font-weight-bold);
 }
 
 /* ============================================================
-   DOCUMENTARY REQUIREMENTS
+   REQUIREMENTS SECTION
    ============================================================ */
 .office-card__requirements {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  border-radius: var(--radius-md);
 }
 
 .office-card__req-header {
-  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .office-card__req-list {
@@ -336,30 +408,29 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .office-card__req-item {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--color-text-primary);
-  line-height: 1.55;
   padding-left: var(--spacing-lg);
   position: relative;
+  line-height: 1.5;
 }
 
 .office-card__req-item::before {
-  content: '✓';
+  content: '•';
   position: absolute;
   left: 0;
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-bold);
   color: var(--color-accent-warm);
-  top: 2px;
+  font-weight: var(--font-weight-bold);
+  font-size: 1.2em;
 }
 
-/* Group item (e.g. "For Renewals:") */
 .office-card__req-item--group {
-  padding-left: 0;
+  padding: 0;
+  margin-top: var(--spacing-sm);
 }
 
 .office-card__req-item--group::before {
@@ -367,40 +438,24 @@
 }
 
 .office-card__req-group-label {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
-  background: var(--color-bg-secondary, #f5f5f5);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  margin-bottom: 6px;
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-warm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.9rem;
 }
 
 .office-card__req-sublist {
   list-style: none;
-  padding: 0 0 0 var(--spacing-md);
-  margin: 4px 0 0 0;
+  padding: 0 0 0 var(--spacing-lg);
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--spacing-xs);
 }
 
-/* ============================================================
-   APPLICABLE-TO TAGS (Special Clearances) — shown in card header
-   ============================================================ */
-
-.office-card__applicable-tag {
-  font-size: 0.8rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-accent-warm);
-  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.1);
-  border: 1px solid rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.25);
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
+.office-card__req-sublist .office-card__req-item {
+  padding-left: var(--spacing-lg);
 }
 
 /* ============================================================
@@ -408,27 +463,27 @@
    ============================================================ */
 .office-card__footer {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  margin-top: auto;
+  gap: var(--spacing-md);
   padding-top: var(--spacing-md);
+  margin-top: var(--spacing-md);
   border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
 }
 
 .office-card__action-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-xs);
+  font-size: 0.95rem;
   color: var(--color-accent-warm);
   text-decoration: none;
   font-weight: var(--font-weight-semibold);
-  font-size: 0.95rem;
   transition: all var(--transition-base);
 }
 
 .office-card__action-link:hover {
   color: var(--color-accent-warm-darker, #d97f1a);
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
 .office-card__action-icon {
@@ -438,17 +493,21 @@
 }
 
 /* ============================================================
-   BACK BUTTON
+   BUTTON WRAPPER (Back + Toggle)
    ============================================================ */
-.offices-page__back-button-wrapper {
+.offices-page__button-wrapper {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  gap: var(--spacing-md);
   margin-top: var(--spacing-2xl);
-  padding-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
   border-top: 1px solid var(--color-border);
+  justify-content: flex-start;
 }
 
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
 .offices-page__back-button {
   display: inline-flex;
   align-items: center;
@@ -463,6 +522,8 @@
   cursor: pointer;
   transition: all var(--transition-base);
   text-decoration: none;
+  font-family: inherit;
+  white-space: nowrap;
 }
 
 .offices-page__back-button:hover {
@@ -481,13 +542,77 @@
 }
 
 /* ============================================================
-   RESPONSIVE — TABLET (≤ 768px)
+   SECTION TOGGLE BUTTON - ORANGE
+   ============================================================ */
+.offices-page__section-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background-color: #ff9500; /* Orange */
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.2);
+}
+
+.offices-page__section-toggle-button:hover {
+  background-color: #ff8500;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 149, 0, 0.35);
+}
+
+.offices-page__section-toggle-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(255, 149, 0, 0.25);
+}
+
+.offices-page__section-toggle-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.15), 0 2px 8px rgba(255, 149, 0, 0.2);
+}
+
+/* Smooth page transition animation */
+@keyframes pageTransitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clearance-group-section {
+  animation: pageTransitionIn 0.4s ease-out forwards;
+}
+
+/* ============================================================
+   RESPONSIVE — HERO TOGGLE (Tablet ≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
-  .offices-page__content { width: 100%; }
-
   .hero-offices { gap: var(--spacing-md); }
   .hero-offices .hero__title { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+
+  .hero__section-toggle {
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .hero__section-toggle-btn {
+    flex: 1;
+    min-width: auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
 
   .clearance-group-section { padding: var(--spacing-xl) var(--page-gutter); }
   .clearance-group-section__inner { padding: 0; gap: 0; }
@@ -509,7 +634,19 @@
   }
 
   .office-card { padding: 0; }
-  .office-card__fullname { font-size: 1rem; }
+
+  /* Button Wrapper - Mobile */
+  .offices-page__button-wrapper {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+  }
+
+  .offices-page__back-button,
+  .offices-page__section-toggle-button {
+    width: 100%;
+  }
 }
 
 /* ============================================================
@@ -521,6 +658,19 @@
   .hero-offices { gap: var(--spacing-sm); }
   .hero-offices .hero__title { font-size: 1.6rem; line-height: 1.15; margin-bottom: var(--spacing-xs); }
   .hero-offices .hero__hint { font-size: 0.9rem; }
+
+  .hero__section-toggle {
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+  }
+
+  .hero__section-toggle-btn {
+    flex: 1;
+    min-width: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.85rem;
+    border-width: 1px;
+  }
 
   .clearance-group-section { padding: var(--spacing-lg) var(--spacing-md); }
   .clearance-group-section__inner { padding: 0; gap: 0; border-radius: 0; }
@@ -542,7 +692,6 @@
   }
 
   .office-card { padding: 0; }
-  .office-card__fullname { font-size: 1rem; margin-bottom: var(--spacing-sm); }
   .office-card__label { font-size: 0.8rem; margin-bottom: 3px; }
   .office-card__text,
   .office-card__service-item,
@@ -556,14 +705,139 @@
   .office-card__req-item { font-size: 0.85rem; padding-left: var(--spacing-md); }
   .office-card__applicable-tag { font-size: 0.75rem; padding: 2px 8px; }
 
+  /* Button Wrapper - Mobile */
+  .offices-page__button-wrapper {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+  }
+
   .offices-page__back-button {
     padding: var(--spacing-xs) var(--spacing-md);
     font-size: 0.85rem;
     gap: 6px;
+    width: 100%;
   }
 
   .offices-page__back-button-icon {
     width: 16px;
     height: 16px;
+  }
+
+  .offices-page__section-toggle-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.85rem;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   BARANGAY HALL BUTTON IN OFFICE CARD
+   ============================================================ */
+.office-card__barangay-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.office-card__barangay-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-accent-warm);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: var(--spacing-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.office-card__barangay-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.office-card__barangay-btn:hover {
+  background: var(--color-accent-warm-darker, #d97f1a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
+}
+
+.office-card__barangay-btn:active {
+  transform: translateY(0);
+}
+
+.office-card__barangay-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.office-card__barangay-btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+.office-card__barangay-btn:hover .office-card__barangay-btn-icon {
+  transform: translateY(2px);
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤ 768px) - BARANGAY BUTTON
+   ============================================================ */
+@media (max-width: 768px) {
+  .office-card__barangay-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.8rem;
+    margin-left: var(--spacing-sm);
+  }
+
+  .barangay-dropdown {
+    width: 280px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤ 480px) - BARANGAY BUTTON
+   ============================================================ */
+@media (max-width: 480px) {
+  .office-card__barangay-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.75rem;
+    margin-left: var(--spacing-xs);
+    gap: 4px;
+  }
+
+  .office-card__barangay-btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Header becomes flex-wrap on mobile if button wraps */
+  .office-card__header {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  /* Mobile dropdown - centered modal style */
+  .barangay-dropdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 2rem);
+    max-width: 100%;
+    max-height: 80vh;
+    margin-top: 0;
   }
 }

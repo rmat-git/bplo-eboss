@@ -166,7 +166,7 @@ export const OFFICES = [
 
   {
     name: 'BENRO',
-    fullName: 'City Environment and Natural Resources Office',
+    fullName: 'Bacolod Environment and Natural Resources Office',
     address: '',
     phone: '',
     email: '',
@@ -333,7 +333,7 @@ export const OFFICES = [
 
   {
     name: 'RONO',
-    fullName: 'Resolution of No Objection (RONO)',
+    fullName: 'Resolution of No Objection',
     address: '',
     phone: '',
     email: '',
