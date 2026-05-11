@@ -32,7 +32,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-md);
 }
 
 /* "Ready to Register?" — big hero heading */
@@ -42,6 +41,7 @@
   color: var(--color-text-primary);
   line-height: 1.2;
   margin: 0;
+  letter-spacing: -1.5px;
 }
 
 /* Orange highlight on "Register?" */

@@ -7,7 +7,7 @@ import { BARANGAYS } from '../../../data/barangay';
 // Positioned at top right, aligned with header
 // ──────────────────────────────────────────────────────────────────────────────
 
-const BarangayDropdown = ({ isOpen, onClose, triggerRef }) => {
+const BarangayDropdown = ({ isOpen, onClose, triggerRef, onSelectBarangay }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBarangay, setSelectedBarangay] = useState('');
   const dropdownRef = useRef(null);
@@ -102,8 +102,10 @@ const BarangayDropdown = ({ isOpen, onClose, triggerRef }) => {
     onClose();
     setSearchTerm('');
     setHighlightedIndex(-1);
-    // You can add callback here to update parent component
-    console.log('Selected barangay:', barangay);
+    // Call parent callback with selected barangay
+    if (onSelectBarangay) {
+      onSelectBarangay(barangay);
+    }
   };
 
   if (!isOpen) return null;
@@ -150,6 +152,11 @@ const BarangayDropdown = ({ isOpen, onClose, triggerRef }) => {
               <span className="barangay-dropdown__item-text">
                 {barangay}
               </span>
+              {barangay === selectedBarangay && (
+                <svg className="barangay-dropdown__checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              )}
             </li>
           ))}
         </ul>

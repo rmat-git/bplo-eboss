@@ -23,7 +23,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-md);
   padding: clamp(25vh, 20vw, 12vh) 1.25rem clamp(10vh, 12vw, 10vh);
 }
 
@@ -33,6 +32,7 @@
   color: var(--color-text-primary);
   line-height: 1.2;
   margin: 0;
+  letter-spacing: -1.5px;
 }
 
 .hero-offices .hero__title em {
@@ -635,6 +635,37 @@
 
   .office-card { padding: 0; }
 
+  /* Downloadables - Tablet */
+  .office-card__downloadables {
+    margin-top: var(--spacing-lg, 16px);
+  }
+
+  .office-card__download-row {
+    padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
+  }
+
+  .office-card__download-item-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .office-card__download-text {
+    font-size: 0.9rem;
+  }
+
+  .office-card__download-btn {
+    padding: var(--spacing-sm, 8px) var(--spacing-sm, 8px);
+  }
+
+  .office-card__download-btn-label {
+    display: none;
+  }
+
+  .office-card__download-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
   /* Button Wrapper - Mobile */
   .offices-page__button-wrapper {
     flex-direction: column;
@@ -705,6 +736,40 @@
   .office-card__req-item { font-size: 0.85rem; padding-left: var(--spacing-md); }
   .office-card__applicable-tag { font-size: 0.75rem; padding: 2px 8px; }
 
+  /* Downloadables - Mobile */
+  .office-card__downloadables {
+    margin-top: var(--spacing-lg, 16px);
+    padding-top: var(--spacing-md, 12px);
+  }
+
+  .office-card__download-row {
+    padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+    gap: var(--spacing-sm, 8px);
+  }
+
+  .office-card__download-item-icon {
+    fill: var(--color-accent-warm);
+    width: 16px;
+    height: 16px;
+  }
+
+  .office-card__download-text {
+    font-size: 0.85rem;
+  }
+
+  .office-card__download-btn {
+    padding: var(--spacing-xs, 6px) var(--spacing-xs, 6px);
+  }
+
+  .office-card__download-btn-label {
+    display: none;
+  }
+
+  .office-card__download-btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+
   /* Button Wrapper - Mobile */
   .offices-page__button-wrapper {
     flex-direction: column;
@@ -730,6 +795,136 @@
     font-size: 0.85rem;
     width: 100%;
   }
+}
+
+/* ============================================================
+   DOWNLOADABLES SECTION
+   Added to OfficeCard component for PDF downloads
+   ============================================================ */
+
+.office-card__downloadables {
+  margin-top: var(--spacing-xl, 24px);
+  padding-top: var(--spacing-lg, 16px);
+  border-top: 1px solid var(--color-border);
+}
+
+.office-card__downloadables-header {
+  margin-bottom: var(--spacing-md, 12px);
+}
+
+.office-card__downloadables-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+}
+
+/* ============================================================
+   DOWNLOAD ROW (TEXT + BUTTON)
+   ============================================================ */
+
+.office-card__download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
+  border-radius: var(--radius-md);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  gap: var(--spacing-md, 12px);
+}
+
+/* ============================================================
+   DOWNLOAD LEFT (ICON + TEXT)
+   ============================================================ */
+
+.office-card__download-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ============================================================
+   DOWNLOAD ITEM ICON
+   ============================================================ */
+
+.office-card__download-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+}
+
+/* ============================================================
+   DOWNLOAD TEXT
+   ============================================================ */
+
+.office-card__download-text {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   DOWNLOAD BUTTON
+   ============================================================ */
+
+.office-card__download-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+  background: var(--color-accent-warm);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.office-card__download-btn:hover {
+  background: var(--color-accent-warm-darker, #d97f1a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
+}
+
+.office-card__download-btn:active {
+  transform: translateY(0);
+}
+
+.office-card__download-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+/* ============================================================
+   DOWNLOAD BUTTON LABEL (DESKTOP ONLY)
+   ============================================================ */
+
+.office-card__download-btn-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   DOWNLOAD BUTTON ICON
+   ============================================================ */
+
+.office-card__download-btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: white;
 }
 
 /* ============================================================
@@ -787,8 +982,37 @@
   transition: transform var(--transition-base);
 }
 
+/* Icon stays in place on hover - no transform */
 .office-card__barangay-btn:hover .office-card__barangay-btn-icon {
-  transform: translateY(2px);
+  transform: none;
+}
+
+/* ============================================================
+   BARANGAY BUTTON — SELECTED STATE
+   White background with orange outline and text
+   ============================================================ */
+.office-card__barangay-btn--selected {
+  background: white;
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+}
+
+.office-card__barangay-btn--selected:hover {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  border-color: var(--color-accent-warm);
+  color: var(--color-accent-warm-darker, #d97f1a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.office-card__barangay-btn--selected:active {
+  transform: translateY(0);
+  background: white;
+}
+
+.office-card__barangay-btn--selected:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
 }
 
 /* ============================================================

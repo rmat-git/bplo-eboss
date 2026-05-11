@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { MdArrowOutward } from 'react-icons/md';
 import { IoChevronDown } from 'react-icons/io5';
+import { CgSoftwareDownload } from 'react-icons/cg';
+import { MdChecklist } from 'react-icons/md';
+import { GrDocumentPdf } from 'react-icons/gr';
 import BarangayDropdown from './dropdowns/barangay';
 import './dropdowns/barangay.css';
 
@@ -13,11 +16,26 @@ import './dropdowns/barangay.css';
 
 const OfficeCard = ({ office }) => {
   const [showBarangayDropdown, setShowBarangayDropdown] = useState(false);
+  const [selectedBarangay, setSelectedBarangay] = useState('');
   const barangayButtonRef = useRef(null);
 
   if (!office) return null;
 
   const isBarangayHall = office.name === 'Barangay Hall';
+
+  /**
+   * Handle barangay selection from dropdown
+   * Updates the button text and applies selected styling
+   */
+  const handleBarangaySelect = (barangay) => {
+    setSelectedBarangay(barangay);
+    setShowBarangayDropdown(false);
+    console.log('Selected barangay:', barangay);
+    // You can add additional logic here:
+    // - Update parent component
+    // - Save to form state
+    // - Trigger API call
+  };
 
   /**
    * Render a single requirement item.
@@ -69,26 +87,39 @@ const OfficeCard = ({ office }) => {
             )}
           </div>
           
-          {/* Barangay Hall Button */}
+          {/* ════════════════════════════════════════════════════════════════
+              BARANGAY HALL BUTTON & DROPDOWN
+              ════════════════════════════════════════════════════════════════ */}
           {isBarangayHall && (
             <div className="office-card__barangay-wrapper">
+              {/* BUTTON */}
               <button
                 ref={barangayButtonRef}
-                className="office-card__barangay-btn"
+                className={`office-card__barangay-btn ${
+                  selectedBarangay ? 'office-card__barangay-btn--selected' : ''
+                }`}
                 onClick={() => setShowBarangayDropdown(!showBarangayDropdown)}
-                aria-label="Select barangay"
-                title="Select a barangay"
+                aria-label={selectedBarangay ? `Selected: ${selectedBarangay}` : 'Select barangay'}
+                aria-expanded={showBarangayDropdown}
+                aria-haspopup="listbox"
+                title={selectedBarangay || 'Select a barangay'}
               >
-                Select Barangay
-                <IoChevronDown className="office-card__barangay-btn-icon" />
+                {/* BUTTON TEXT - shows selected barangay or placeholder */}
+                <span>{selectedBarangay || 'Select Barangay'}</span>
+                
+                {/* ICON - only show when NOT selected */}
+                {!selectedBarangay && (
+                  <IoChevronDown className="office-card__barangay-btn-icon" />
+                )}
               </button>
               
-              {/* Barangay Dropdown (Anchored to button) */}
+              {/* DROPDOWN */}
               {showBarangayDropdown && (
                 <BarangayDropdown
                   isOpen={showBarangayDropdown}
                   onClose={() => setShowBarangayDropdown(false)}
                   triggerRef={barangayButtonRef}
+                  onSelectBarangay={handleBarangaySelect}
                 />
               )}
             </div>
@@ -165,6 +196,49 @@ const OfficeCard = ({ office }) => {
               </ul>
             </div>
           )}
+        </div>
+
+        {/* ── Downloadables Section ── */}
+        <div className="office-card__downloadables">
+          <div className="office-card__downloadables-header">
+            <span className="office-card__label">Downloadables:</span>
+          </div>
+          <div className="office-card__downloadables-list">
+            <div className="office-card__download-row">
+              <div className="office-card__download-left">
+                <GrDocumentPdf 
+                  className="office-card__download-item-icon"
+                  style={{ color: 'var(--color-accent-warm)' }}
+                />
+                <span className="office-card__download-text">Application Form</span>
+              </div>
+              <button 
+                className="office-card__download-btn"
+                title="Download application form PDF"
+                onClick={() => console.log('Download Application Form')}
+              >
+                <CgSoftwareDownload className="office-card__download-btn-icon" />
+                <span className="office-card__download-btn-label">Download</span>
+              </button>
+            </div>
+            <div className="office-card__download-row">
+              <div className="office-card__download-left">
+                <MdChecklist 
+                  className="office-card__download-item-icon"
+                  style={{ color: 'var(--color-accent-warm)' }}
+                />
+                <span className="office-card__download-text">Requirements Checklist</span>
+              </div>
+              <button 
+                className="office-card__download-btn"
+                title="Download requirements checklist PDF"
+                onClick={() => console.log('Download Requirements Checklist')}
+              >
+                <CgSoftwareDownload className="office-card__download-btn-icon" />
+                <span className="office-card__download-btn-label">Download</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* ── Footer Links ── */}

@@ -170,6 +170,48 @@
 }
 
 /* ============================================================
+   BARANGAY BUTTON — SELECTED STATE
+   Override in OfficePage.css for button styling
+   ============================================================ */
+.office-card__barangay-btn--selected {
+  background: white;
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+}
+
+.office-card__barangay-btn--selected:hover {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  border-color: var(--color-accent-warm);
+  color: var(--color-accent-warm-darker, #d97f1a);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.office-card__barangay-btn--selected:active {
+  transform: translateY(0);
+  background: white;
+}
+
+.office-card__barangay-btn--selected:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+/* ============================================================
+   ICON - No transform on hover (stays in place)
+   ============================================================ */
+.office-card__barangay-btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+/* Remove the transform from icon on hover - it stays still */
+.office-card__barangay-btn:hover .office-card__barangay-btn-icon {
+  transform: none;
+}
+
+/* ============================================================
    RESPONSIVE — TABLET (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
