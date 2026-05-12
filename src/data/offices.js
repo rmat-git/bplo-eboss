@@ -97,7 +97,18 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'bfp-application-form.pdf',
+        label: 'Application Form',
+        type: 'form',
+      },
+      {
+        filename: 'bfp-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -116,7 +127,13 @@ export const OFFICES = [
       'Pictures of the Area/Vicinity Map',
     ],
     applicableTo: [],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'cpdo-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -135,7 +152,13 @@ export const OFFICES = [
       'Business Permit Application',
     ],
     applicableTo: [],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'cho-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -185,7 +208,13 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'obo-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -211,7 +240,13 @@ export const OFFICES = [
       'Industry-specific clearances (e.g., Hazardous Waste Generator Registration, DTI Accreditation, Certificate of Verification)',
     ],
     applicableTo: [],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'benro-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   /* ══════════════════════════════════════════════════════════
@@ -234,7 +269,13 @@ export const OFFICES = [
       'Certification from the Bureau of Animal Industry (BAI)'
     ],
     applicableTo: ['Agriculture-related Businesses'],
-    downloadables:[],
+    downloadables:[
+      {
+        filename: 'agriculture-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {

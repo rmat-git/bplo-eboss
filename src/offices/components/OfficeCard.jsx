@@ -69,7 +69,7 @@ const OfficeCard = ({ office }) => {
   const downloadFile = (filename) => {
     try {
       const link = document.createElement('a');
-      link.href = `/downloads/${filename}`;
+      link.href = `/public/downloads/${filename}`;
       link.download = filename;
       document.body.appendChild(link);
       link.click();
