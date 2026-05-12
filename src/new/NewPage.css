@@ -39,11 +39,32 @@
 
 /* "Ready to Register?" — big hero heading */
 .hero__title {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: var(--font-weight-extrabold);
   color: var(--color-text-primary);
   line-height: 1.2;
   margin: 0;
+  letter-spacing: -1.5px;
+}
+
+/* Mobile title sizing */
+@media (max-width: 480px) {
+  .hero-newpage .hero__title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Tablet title sizing */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-newpage .hero__title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Desktop title with clamp */
+@media (min-width: 769px) {
+  .hero-newpage .hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+  }
 }
 
 /* Orange highlight on "Register?" */
@@ -455,11 +476,6 @@
     max-width: 100%;
   }
 
-
-  .hero__title {
-    font-size: 1.75rem;
-    line-height: 1.15;
-  }
 
   .hero__register-btn {
     padding: var(--spacing-sm) var(--spacing-xl);
