@@ -64,19 +64,22 @@ const OfficeCard = ({ office }) => {
 
   /**
    * Download a file from the public/downloads folder
-   * @param {string} filename - The name of the file to download
+   * @param {string} filename - The path to the file (e.g., 'barangay/application-form.pdf')
    */
   const downloadFile = (filename) => {
     try {
       const link = document.createElement('a');
+      // Construct path from web root: /downloads/{filename}
+      // The filename already includes subfolder from offices.js
       link.href = `/downloads/${filename}`;
-      link.download = filename;
+      link.download = filename.split('/').pop(); // Extract just the filename for download
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       console.log(`Downloaded: ${filename}`);
     } catch (error) {
       console.error(`Failed to download ${filename}:`, error);
+      alert('Failed to download file. Please try again.');
     }
   };
 

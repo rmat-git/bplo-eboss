@@ -47,7 +47,7 @@ const OfficesPage = ({ offices = OFFICES }) => {
     officesList.find(o => o.name === 'Agriculture'),
     officesList.find(o => o.name === 'Veterinary'),
     officesList.find(o => o.name === 'Tourism'),
-    officesList.find(o => o.name === 'Admin'),
+    officesList.find(o => o.name === 'City Admin'),
     officesList.find(o => o.name === 'BTTMD'),
     officesList.find(o => o.name === 'SP'),
   ].filter(Boolean);
