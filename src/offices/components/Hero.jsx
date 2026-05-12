@@ -11,7 +11,7 @@ const HeroSection = ({ activeSection = 'required', onSectionChange }) => {
         List of Regulatory <em>Offices</em>
       </h1>
       <p className="hero__hint">
-        Provide these essential documents to get your Business Permit cleared and issued
+        Essential Documents Required for Each Clearance and Their Respective Offices
       </p>
 
       {/* ── Section Toggle Buttons ── */}

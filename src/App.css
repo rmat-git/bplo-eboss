@@ -219,6 +219,30 @@ button {
   }
 }
 
+@keyframes scrollBounce {
+  0%, 20%, 50%, 80%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* ============================================================
    GLOBAL UTILITIES
    ============================================================ */
@@ -665,6 +689,96 @@ button {
 }
 
 /* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.scroll-indicator__text {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ============================================================
+   FLOATING SCROLL OVERLAY
+   ============================================================ */
+.floating-scroll-overlay {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: var(--z-content);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.floating-scroll-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.floating-scroll-overlay:hover .floating-scroll-overlay__icon {
+  transform: translateY(-4px);
+}
+
+/* Text label */
+.floating-scroll-overlay__text {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-warm);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.floating-scroll-overlay:hover .floating-scroll-overlay__text {
+  color: var(--color-accent-warm-dark);
+}
+
+/* Icon container */
+.floating-scroll-overlay__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-warm);
+  transition: transform 0.3s ease, color 0.3s ease;
+  animation: subtleScrollBounce 2.5s ease-in-out infinite;
+}
+
+.floating-scroll-overlay:hover .floating-scroll-overlay__icon {
+  color: var(--color-accent-warm-dark);
+}
+
+/* Subtle bounce animation */
+@keyframes subtleScrollBounce {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+}
+
+/* ============================================================
    RESPONSIVE — TABLET (≤ 768px)
    ============================================================ */
 @media (max-width: 768px) {
@@ -681,11 +795,31 @@ button {
     align-items: flex-start;
     gap: var(--spacing-md);
   }
+
+  /* Adjust floating overlay for tablet */
+  .floating-scroll-overlay {
+    bottom: 32px;
+    right: 32px;
+    gap: 10px;
+  }
+
+  .floating-scroll-overlay__text {
+    font-size: var(--font-size-xs);
+  }
 }
 
 /* ============================================================
    RESPONSIVE — MOBILE (≤ 480px)
    ============================================================ */
 @media (max-width: 480px) {
-  /* intentionally left for page-specific overrides */
+  /* Floating overlay positioning for mobile */
+  .floating-scroll-overlay {
+    bottom: 24px;
+    right: 24px;
+    gap: 8px;
+  }
+
+  .floating-scroll-overlay__text {
+    font-size: 0.75rem;
+  }
 }

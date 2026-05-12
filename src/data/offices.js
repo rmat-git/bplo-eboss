@@ -19,6 +19,13 @@
  *                  (e.g. "For Renewals:", "For Tenants:").
  *   applicableTo — string[] (special clearances only) — business types
  *                  that require a clearance from this office
+ *   downloadables — (optional) array of downloadable files
+ *                  Each object has:
+ *                  - filename: actual filename in public/downloads/
+ *                  - label: display name (e.g., "Application Form")
+ *                  - type: 'form', 'checklist', 'guide', 'document', 'certificate'
+ *                           (determines icon automatically)
+ *                  Only renders if downloadables array exists and has items
  */
 
 export const OFFICES = [
@@ -47,6 +54,18 @@ export const OFFICES = [
       'Certificate of Transfer / Endorsement (if the applicant is a new tenant of less than 6 months)',
     ],
     applicableTo: [],
+    downloadables: [
+      {
+        filename: 'barangay-application-form.pdf',
+        label: 'Application Form',
+        type: 'form',
+      },
+      {
+        filename: 'barangay-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -78,6 +97,7 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
+    downloadables:[],
   },
 
   {
@@ -96,6 +116,7 @@ export const OFFICES = [
       'Pictures of the Area/Vicinity Map',
     ],
     applicableTo: [],
+    downloadables:[],
   },
 
   {
@@ -114,6 +135,7 @@ export const OFFICES = [
       'Business Permit Application',
     ],
     applicableTo: [],
+    downloadables:[],
   },
 
   {
@@ -163,6 +185,7 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
+    downloadables:[],
   },
 
   {
@@ -188,6 +211,7 @@ export const OFFICES = [
       'Industry-specific clearances (e.g., Hazardous Waste Generator Registration, DTI Accreditation, Certificate of Verification)',
     ],
     applicableTo: [],
+    downloadables:[],
   },
 
   /* ══════════════════════════════════════════════════════════
@@ -210,6 +234,7 @@ export const OFFICES = [
       'Certification from the Bureau of Animal Industry (BAI)'
     ],
     applicableTo: ['Agriculture-related Businesses'],
+    downloadables:[],
   },
 
   {
@@ -228,6 +253,7 @@ export const OFFICES = [
       'Bureau of Animal Industry (BAI) Certification'
     ],
     applicableTo: ['Meat Products', 'Poultry Products'],
+    downloadables:[],
   },
 
   {
@@ -261,6 +287,7 @@ export const OFFICES = [
       },
     ],
     applicableTo: ['Tourism-related Businesses'],
+    downloadables:[],
   },
 
   {
@@ -315,10 +342,11 @@ export const OFFICES = [
       },
     ],
     applicableTo: ['Manukan Country'],
+    downloadables:[],
   },
 
   {
-    name: 'Traffic',
+    name: 'BTTMD',
     fullName: 'Bacolod Traffic and Transport Management Department',
     address: '',
     phone: '',
@@ -334,20 +362,35 @@ export const OFFICES = [
       'Valid Franchise',
     ],
     applicableTo: ['Transportation-related Businesses'],
+    downloadables:[],
   },
 
   {
-    name: 'RONO',
-    fullName: 'Resolution of No Objection',
-    address: '',
+    name: 'SP',
+    fullName: 'Sangguniang Panlungsod',
+    address: '2nd Floor, Bacolod City Government Center (BCGC), Bacolod City',
     phone: '',
     email: '',
     hours: 'Monday – Friday, 8:00 AM – 5:00 PM',
     website: '',
     link: '',
-    description: 'Issues clearances for cooperatives registered and operating within the city.',
-    services: ['Cooperative Clearance'],
-    requirements: [],
-    applicableTo: ['Cooperatives'],
+    description: 'The Sangguniang Panlungsod issues the Resolution of No Objection (RONO), a legislative requirement for specific high-impact business activities or those involving regulated industries.',
+    services: [
+      'Issuance of Resolution of No Objection (RONO)',
+      'Legislative Endorsement',
+    ],
+    requirements: [
+      'Formal Letter of Intent addressed to the Vice Mayor / Presiding Officer',
+      'Barangay Resolution of No Objection (from the host Barangay)',
+      'Proof of Ownership (TCT) or Notarized Contract of Lease',
+      'Vicinity Map and Site Plan',
+      'DTI Registration or SEC Articles of Incorporation',
+      'Endorsement from relevant National Government Agencies (if applicable)',
+    ],
+    applicableTo: [
+      'Gaming and E-Games Establishments', 
+      'Cooperatives'
+    ],
+    downloadables: [],
   },
 ];

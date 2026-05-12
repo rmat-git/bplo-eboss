@@ -1,9 +1,8 @@
 import React, { useRef, useState } from 'react';
-import { MdArrowOutward } from 'react-icons/md';
+import { MdArrowOutward, MdChecklist } from 'react-icons/md';
 import { IoChevronDown } from 'react-icons/io5';
 import { CgSoftwareDownload } from 'react-icons/cg';
-import { MdChecklist } from 'react-icons/md';
-import { GrDocumentPdf } from 'react-icons/gr';
+import { GrDocumentPdf, GrDocumentText, GrLocationPin, GrCertificate } from 'react-icons/gr';
 import BarangayDropdown from './dropdowns/barangay';
 import './dropdowns/barangay.css';
 
@@ -35,6 +34,50 @@ const OfficeCard = ({ office }) => {
     // - Update parent component
     // - Save to form state
     // - Trigger API call
+  };
+
+  /**
+   * Get the appropriate icon component for a download type
+   * @param {string} type - 'form', 'checklist', 'guide', 'document', 'certificate'
+   * @returns {React.ReactNode} Icon component
+   */
+  const getDownloadIcon = (type) => {
+    const iconProps = {
+      className: 'office-card__download-item-icon',
+      style: { color: 'var(--color-accent-warm)' },
+    };
+
+    switch (type) {
+      case 'form':
+        return <GrDocumentText {...iconProps} />;
+      case 'checklist':
+        return <MdChecklist {...iconProps} />;
+      case 'guide':
+        return <GrLocationPin {...iconProps} />;
+      case 'certificate':
+        return <GrCertificate {...iconProps} />;
+      case 'document':
+      default:
+        return <GrDocumentPdf {...iconProps} />;
+    }
+  };
+
+  /**
+   * Download a file from the public/downloads folder
+   * @param {string} filename - The name of the file to download
+   */
+  const downloadFile = (filename) => {
+    try {
+      const link = document.createElement('a');
+      link.href = `/downloads/${filename}`;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log(`Downloaded: ${filename}`);
+    } catch (error) {
+      console.error(`Failed to download ${filename}:`, error);
+    }
   };
 
   /**
@@ -199,47 +242,31 @@ const OfficeCard = ({ office }) => {
         </div>
 
         {/* ── Downloadables Section ── */}
-        <div className="office-card__downloadables">
-          <div className="office-card__downloadables-header">
-            <span className="office-card__label">Downloadables:</span>
-          </div>
-          <div className="office-card__downloadables-list">
-            <div className="office-card__download-row">
-              <div className="office-card__download-left">
-                <GrDocumentPdf 
-                  className="office-card__download-item-icon"
-                  style={{ color: 'var(--color-accent-warm)' }}
-                />
-                <span className="office-card__download-text">Application Form</span>
-              </div>
-              <button 
-                className="office-card__download-btn"
-                title="Download application form PDF"
-                onClick={() => console.log('Download Application Form')}
-              >
-                <CgSoftwareDownload className="office-card__download-btn-icon" />
-                <span className="office-card__download-btn-label">Download</span>
-              </button>
+        {office.downloadables && Array.isArray(office.downloadables) && office.downloadables.length > 0 && (
+          <div className="office-card__downloadables">
+            <div className="office-card__downloadables-header">
+              <span className="office-card__label">Downloadables:</span>
             </div>
-            <div className="office-card__download-row">
-              <div className="office-card__download-left">
-                <MdChecklist 
-                  className="office-card__download-item-icon"
-                  style={{ color: 'var(--color-accent-warm)' }}
-                />
-                <span className="office-card__download-text">Requirements Checklist</span>
-              </div>
-              <button 
-                className="office-card__download-btn"
-                title="Download requirements checklist PDF"
-                onClick={() => console.log('Download Requirements Checklist')}
-              >
-                <CgSoftwareDownload className="office-card__download-btn-icon" />
-                <span className="office-card__download-btn-label">Download</span>
-              </button>
+            <div className="office-card__downloadables-list">
+              {office.downloadables.map((downloadable, i) => (
+                <div key={i} className="office-card__download-row">
+                  <div className="office-card__download-left">
+                    {getDownloadIcon(downloadable.type)}
+                    <span className="office-card__download-text">{downloadable.label}</span>
+                  </div>
+                  <button 
+                    className="office-card__download-btn"
+                    title={`Download ${downloadable.label}`}
+                    onClick={() => downloadFile(downloadable.filename)}
+                  >
+                    <CgSoftwareDownload className="office-card__download-btn-icon" />
+                    <span className="office-card__download-btn-label">Download</span>
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
 
         {/* ── Footer Links ── */}
         {(office.link || office.website) && (

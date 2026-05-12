@@ -14,14 +14,6 @@
   box-sizing: border-box;
 }
 
-.offices-page__content--mobile {
-  /* Mobile-specific optimizations */
-}
-
-.offices-page__content--desktop {
-  /* Desktop-specific optimizations */
-}
-
 .offices-page__empty-state {
   padding: 2rem;
   text-align: center;
@@ -371,7 +363,7 @@
 @media (max-width: 480px) {
   .offices-page__tab {
     flex: 0 1 calc(50% - 4px);
-    font-size: .85rem;
+    font-size: 0.95rem;
     padding: 8px 6px;
     margin: 2px;
   }
@@ -381,7 +373,7 @@
 @media (min-width: 481px) and (max-width: 768px) {
   .offices-page__tab {
     flex: 1;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     padding: var(--spacing-sm) var(--spacing-md);
   }
 }
@@ -390,7 +382,7 @@
 @media (min-width: 769px) {
   .offices-page__tab {
     flex: 1;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     padding: var(--spacing-sm) var(--spacing-lg);
   }
 }
@@ -496,16 +488,42 @@
   padding: 6px 10px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.1);
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+  display: inline-flex;
+  align-items: center;
+  transition: all var(--transition-base);
+}
+
+.office-card__applicable-tag:hover {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.15);
+  border-color: var(--color-accent-warm-darker, #d97f1a);
+  color: var(--color-accent-warm-darker, #d97f1a);
 }
 
 .office-card__applicable-tag--required {
-  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.15);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.1);
   color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+}
+
+.office-card__applicable-tag--required:hover {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.15);
+  border-color: var(--color-accent-warm-darker, #d97f1a);
+  color: var(--color-accent-warm-darker, #d97f1a);
 }
 
 .office-card__applicable-tag--special {
-  background: rgba(82, 182, 154, 0.15);
+  background: rgba(82, 182, 154, 0.1);
   color: rgb(82, 182, 154);
+  border: 1.5px solid rgb(82, 182, 154);
+}
+
+.office-card__applicable-tag--special:hover {
+  background: rgba(82, 182, 154, 0.15);
+  border-color: rgb(52, 152, 124);
+  color: rgb(52, 152, 124);
 }
 
 /* ============================================================
@@ -862,6 +880,32 @@
 }
 
 /* ============================================================
+   BARANGAY BUTTON — LOCKED WIDTH
+   ============================================================ */
+.office-card__barangay-btn {
+  width: 180px !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 480px) {
+  .office-card__barangay-btn {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ============================================================
    BUTTON WRAPPER (Back + Toggle)
    ============================================================ */
 .offices-page__button-wrapper {
@@ -1151,7 +1195,7 @@
 
 .office-card__download-btn-label {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-semibold);
   color: white;
   white-space: nowrap;
 }

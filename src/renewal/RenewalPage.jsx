@@ -26,8 +26,12 @@ function RenewalPage({ onRenewClick }) {
       {/* Hero Section - Renewal specific */}
       <HeroSection onRenewClick={onRenewClick} />
 
-      {/* Stepper - Shared component, different STEPS data */}
-      <Stepper steps={STEPS} />
+      {/* Stepper - Shared component with Renewal labels */}
+      <Stepper 
+        steps={STEPS}
+        label="Start Your Business Renewal"
+        subtitle="Follow these steps to renew your business permit"
+      />
 
       {/* Requirements - Shared component, different REQUIREMENTS data */}
       <RequirementsSection requirements={REQUIREMENTS} />

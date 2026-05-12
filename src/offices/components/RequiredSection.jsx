@@ -40,7 +40,7 @@ const RequiredClearancesSection = ({
         <div className="clearance-group-section__header">
           <h2 className="clearance-group-section__title--required">Required Clearances</h2>
           <p className="clearance-group-section__subtitle--required">
-            Essential offices for business registration
+            Offices for Business Registration
           </p>
         </div>
 

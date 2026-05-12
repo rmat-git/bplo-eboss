@@ -26,61 +26,22 @@ import { STEPS, REQUIREMENTS } from '../data/newpage';
 function NewPage({ onRegisterClick }) {
   return (
     <div className="newpage newpage__content">
-      {/* ─── Hero Section ─────────────────────────────────────────────────── */}
-      {/* Hero with main Register button */}
+      {/* Hero Section - New Business specific */}
       <HeroSection onRegisterClick={onRegisterClick} />
 
-      {/* ─── Stepper Section ──────────────────────────────────────────────── */}
-      {/* Step-by-step process visualization (Steps 1, 2, 3) */}
-      <section className="stepper">
-        <p className="stepper__label">How It Works</p>
-        <h2 className="stepper__subtitle">
-          Three simple steps to get your Mayor's Permit online
-        </h2>
-        <div className="stepper__container">
-          {STEPS.map((step, index) => (
-            <React.Fragment key={step.number}>
-              <div className="step-card">
-                <div className="step-card__badge">
-                  <div className="step-card__pulse"></div>
-                  <div className="step-card__number">{step.number}</div>
-                </div>
-                <h3 className="step-card__title">{step.title}</h3>
-                <p className="step-card__description">{step.description}</p>
-              </div>
-              {/* Connector line between steps (hide on last) */}
-              {index < STEPS.length - 1 && (
-                <div className="stepper__connector"></div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-      </section>
+      {/* Stepper - Shared component with New Business labels */}
+      <Stepper 
+        steps={STEPS}
+        label="How to Get a New Business Permit"
+        subtitle="Three simple steps to get your Mayor's Permit online"
+      />
 
-      {/* ─── Requirements Section ─────────────────────────────────────────── */}
-      {/* 
-        Displays requirements per step in card format:
-        - Step 1: Business Registration with action links
-          • Sole → Click here for DTI registration ↗
-          • Corporation/Partnership → Click here for SEC registration ↗
-          • Cooperative → Click here for CDA registration ↗
-          • Proof of Business Location Ownership documents
-        
-        - Step 2: Assessment & Payment
-          • Billing summary info
-          • Payment Options
-          • "Find Payment Centers" button (navigates to /offices page)
-        
-        - Step 3: Permit Claim
-          • Walk-in documentation requirements
-          • Email delivery option
-      */}
+      {/* Requirements - Shared component, New Business specific data */}
       <RequirementsSection 
         requirements={REQUIREMENTS}
       />
 
-      {/* ─── CTA Section ──────────────────────────────────────────────────── */}
-      {/* Final call-to-action with Register button */}
+      {/* CTA - Shared component, New Business specific callback */}
       <CTASection onRegisterClick={onRegisterClick} />
     </div>
   );

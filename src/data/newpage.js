@@ -70,7 +70,7 @@ export const REQUIREMENTS = [
         label: 'Payment Options',
         sub: [
           { label: 'Over-the-counter (physical)', link: null },
-          { label: 'Online payment (via link)', placeholder: 'Click "Find Payment Centers" button' },
+          { label: 'Online payment', action: 'Click here for online payments', link: '#online-payment' },
         ],
       },
     ],
@@ -81,6 +81,7 @@ export const REQUIREMENTS = [
     stepNumber: 3,
     title: 'Permit Claim',
     items: [
+      "Bring the following documents when claiming your Mayor's Permit:",
       {
         label: 'Walk-in (Business Owner)',
         sub: [
@@ -99,4 +100,3 @@ export const REQUIREMENTS = [
     ],
   },
 ];
-

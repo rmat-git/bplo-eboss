@@ -1,11 +1,11 @@
 import React from 'react';
 import StepCard from './StepCard';
 
-const Stepper = ({ steps }) => {
+const Stepper = ({ steps, label, subtitle }) => {
   return (
     <section className="stepper">
-      <p className="stepper__label">How TO Apply for NEW BUSINESS</p>
-      <p className="stepper__subtitle">Follow these three steps to get your business permit processed online.</p>
+      <p className="stepper__label">{label}</p>
+      <p className="stepper__subtitle">{subtitle}</p>
       <div className="stepper__container">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
