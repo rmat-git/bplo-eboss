@@ -1,3 +1,5 @@
+@import '../styles/stepper.css';
+@import '../styles/requirements.css';
 /* ============================================================
    NEWPAGE STYLES
    Location: src/new/NewPage.css
@@ -32,6 +34,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-md);
 }
 
 /* "Ready to Register?" — big hero heading */
@@ -41,7 +44,6 @@
   color: var(--color-text-primary);
   line-height: 1.2;
   margin: 0;
-  letter-spacing: -1.5px;
 }
 
 /* Orange highlight on "Register?" */
@@ -63,394 +65,6 @@
   font-size: 0.9rem;
   color: var(--color-text-muted);
   margin: 0;
-}
-
-/* ============================================================
-   STEPPER SECTION
-   ============================================================ */
-.stepper {
-  padding: var(--spacing-2xl) var(--page-gutter) var(--spacing-2xl);
-  background: var(--color-bg-primary);
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.stepper__label {
-  font-size: clamp(1.6rem, 4vw, 2.5rem);
-  font-weight: var(--font-weight-extrabold);
-  text-transform: uppercase;
-  color: var(--color-accent-warm);
-}
-
-.stepper__subtitle {
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-muted);
-  margin-bottom: var(--spacing-xl);
-  width: 100%;
-  line-height: 1.6;
-}
-
-.stepper__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xl);
-  flex-wrap: wrap;
-}
-
-/* ============================================================
-   STEP CARD
-   ============================================================ */
-.step-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--spacing-md);
-  position: relative;
-  max-width: 280px;
-  padding: var(--spacing-lg);
-  background: var(--color-bg-primary);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-}
-
-.step-card:hover {
-  border-color: var(--color-accent-warm);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-.step-card__badge {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  margin-bottom: var(--spacing-sm);
-}
-
-.step-card__number {
-  width: 60px;
-  height: 60px;
-  background: var(--color-accent-warm);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: var(--font-weight-extrabold);
-  color: #ffffff;
-  position: relative;
-  z-index: 2;
-  box-shadow: var(--shadow-md);
-}
-
-.step-card__pulse {
-  display: none;
-}
-
-.step-card__title {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  line-height: 1.4;
-}
-
-.step-card__description {
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-/* Connector line between cards */
-.stepper__connector {
-  width: 48px;
-  height: 2px;
-  background: var(--color-border);
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   REQUIREMENTS SECTION
-   ============================================================ */
-.requirements-section {
-  padding: var(--spacing-2xl) var(--page-gutter);
-  background: var(--color-accent-light);
-}
-
-.requirements-section__header {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.requirements-section__title {
-  font-size: clamp(1.75rem, 4vw, 2.25rem);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
-  text-transform: uppercase;
-}
-
-.requirements-section__subtitle {
-  font-size: 1rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-text-muted);
-  line-height: 1.6;
-}
-
-.requirements-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ============================================================
-   REQUIREMENT CARD
-   ============================================================ */
-.requirement-card {
-  background: var(--color-bg-primary);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  transition: all var(--transition-base);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.requirement-card:hover {
-  border-color: var(--color-accent-warm);
-  box-shadow: var(--shadow-md);
-}
-
-.requirement-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0 var(--spacing-lg) 0;
-  gap: var(--spacing-sm);
-}
-
-.requirement-card__header-left {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
-}
-
-.requirement-card__step-tag {
-  font-size: 0.85rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: var(--color-accent-medium);
-  color: var(--color-text-primary);
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
-}
-
-.requirement-card__title {
-  font-size: 1rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  line-height: 1.3;
-}
-
-.requirement-card__divider {
-  height: 1px;
-  background: var(--color-border);
-  margin-bottom: var(--spacing-md);
-}
-
-.requirement-card__content {
-  padding: 0;
-  flex-grow: 1;
-}
-
-.requirement-card__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.requirement-card__list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-sm);
-  font-size: 0.9rem;
-  color: var(--color-text-primary);
-  line-height: 1.5;
-}
-
-.requirement-card__list-item::before {
-  content: '›';
-  color: var(--color-accent-warm);
-  font-weight: var(--font-weight-bold);
-  font-size: 1rem;
-  line-height: 1.4;
-  flex-shrink: 0;
-}
-
-.requirement-card__sub-list {
-  list-style: none;
-  margin-top: var(--spacing-xs);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.requirement-card__item-label {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-
-.requirement-card__sub-item {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  padding-left: var(--spacing-md);
-  position: relative;
-}
-
-.requirement-card__sub-item::before {
-  content: '–';
-  position: absolute;
-  left: 4px;
-  color: var(--color-accent-medium);
-}
-
-.requirement-card__sub-heading {
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  margin-bottom: 6px;
-  font-size: 0.9rem;
-}
-
-.requirement-card__sub-action-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--color-accent-warm);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  font-size: 0.85rem;
-  transition: all var(--transition-base);
-}
-
-.requirement-card__sub-action-link:hover {
-  text-decoration: underline;
-}
-
-.requirement-card__sub-action-icon {
-  width: 14px;
-  height: 14px;
-}
-
-/* Link styling within sub-items */
-.requirement-card__sub-link {
-  color: var(--color-accent-warm);
-  text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  transition: all var(--transition-base);
-  margin-left: 4px;
-}
-
-.requirement-card__sub-link:hover {
-  text-decoration: underline;
-  opacity: 0.8;
-}
-
-/* Action link indented: "Click here for..." */
-.requirement-card__sub-action {
-  padding-left: var(--spacing-lg);
-  margin-bottom: 12px;
-}
-
-/* Action link styling - simple underlined link with icon */
-.requirement-card__action-link {
-  color: var(--color-accent-warm);
-  background: none;
-  text-decoration: underline;
-  padding: 0;
-  border-radius: 0;
-  font-weight: var(--font-weight-regular);
-  font-size: 0.95rem;
-  transition: all var(--transition-base);
-  cursor: pointer;
-  line-height: 1.4;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: none;
-}
-
-/* Icon styling */
-.requirement-card__action-icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-  transition: all var(--transition-base);
-}
-
-.requirement-card__action-link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.requirement-card__action-link:hover .requirement-card__action-icon {
-  transform: translateX(2px) translateY(-2px);
-}
-
-.requirement-card__action-link:active {
-  opacity: 0.7;
-}
-
-/* ============================================================
-   REQUIREMENT CARD — FOOTER & BUTTON
-   ============================================================ */
-.requirement-card__footer {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-lg);
-  border-top: 1px solid var(--color-border);
-}
-
-.requirement-card__button {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: var(--color-accent-warm);
-  color: #ffffff;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  white-space: nowrap;
-}
-
-.requirement-card__button:hover {
-  background: var(--color-accent-warm);
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.requirement-card__button:active {
-  transform: translateY(0);
 }
 
 /* ============================================================
@@ -750,8 +364,6 @@
 
   /* Hero */
   .hero-newpage {
-    padding: var(--spacing-2xl) var(--page-gutter) var(--spacing-lg);
-    gap: var(--spacing-md);
     width: 100%;
     max-width: 100%;
   }
@@ -839,22 +451,13 @@
 @media (max-width: 480px) {
   /* Ensure headspace for fixed header on mobile */
   .newpage__content {
-    padding-top: var(--header-height);
     width: 100%;
     max-width: 100%;
   }
 
-  /* Hero section — optimized for mobile */
-  .hero-newpage {
-    gap: var(--spacing-sm);
-    min-height: auto;
-    width: 100%;
-    max-width: 100%;
-  }
 
   .hero__title {
-    font-size: 1.6rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 1.75rem;
     line-height: 1.15;
   }
 

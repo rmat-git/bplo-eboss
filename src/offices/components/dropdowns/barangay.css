@@ -1,24 +1,19 @@
 /* ============================================================
    FLOATING BARANGAY DROPDOWN STYLES
-   Appears when Barangay Hall office is clicked
-   Positioned below the button using absolute positioning
+   Mobile-first approach with distinct desktop/mobile layouts
    ============================================================ */
 
+/* ============================================================
+   SHARED DROPDOWN STYLES
+   ============================================================ */
 .barangay-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: var(--spacing-sm, 8px);
   background: var(--color-bg-primary);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  z-index: 2000;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  max-height: 360px;
-  width: 320px;
   animation: dropdownSlideIn 0.25s ease-out;
 }
 
@@ -33,19 +28,69 @@
   }
 }
 
+/* ────────────────────────────────────────────────────────────
+   DESKTOP DROPDOWN — Absolute positioning below trigger
+   ────────────────────────────────────────────────────────────*/
+.barangay-dropdown--desktop {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--spacing-sm, 8px);
+  z-index: 2000;
+  max-height: 360px;
+  width: 320px;
+}
+
+/* Tablet adjustment */
+@media (max-width: 768px) {
+  .barangay-dropdown--desktop {
+    width: 280px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   MOBILE DROPDOWN — Fixed modal-style positioning
+   ────────────────────────────────────────────────────────────*/
+.barangay-dropdown--mobile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-width: 100%;
+  max-height: 80vh;
+  z-index: 9999;
+  margin-top: 0;
+}
+
 /* ============================================================
-   SEARCH INPUT
+   SEARCH INPUT — SHARED
    ============================================================ */
 .barangay-dropdown__search {
   padding: var(--spacing-md) var(--spacing-lg);
   border: none;
   border-bottom: 1px solid var(--color-border);
-  font-size: 0.95rem;
   font-family: inherit;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   outline: none;
   transition: all var(--transition-base);
+}
+
+/* Mobile search sizing */
+@media (max-width: 480px) {
+  .barangay-dropdown__search {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop search sizing */
+@media (min-width: 481px) {
+  .barangay-dropdown__search {
+    font-size: 0.95rem;
+  }
 }
 
 .barangay-dropdown__search::placeholder {
@@ -58,7 +103,7 @@
 }
 
 /* ============================================================
-   ITEMS LIST
+   ITEMS LIST — SHARED
    ============================================================ */
 .barangay-dropdown__list {
   flex: 1;
@@ -92,7 +137,7 @@
 }
 
 /* ============================================================
-   LIST ITEMS
+   LIST ITEMS — SHARED
    ============================================================ */
 .barangay-dropdown__item {
   padding: var(--spacing-md) var(--spacing-lg);
@@ -102,9 +147,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.95rem;
   color: var(--color-text-primary);
   list-style: none;
+  user-select: none;
+}
+
+/* Mobile item sizing */
+@media (max-width: 480px) {
+  .barangay-dropdown__item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop item sizing */
+@media (min-width: 481px) {
+  .barangay-dropdown__item {
+    font-size: 0.95rem;
+  }
 }
 
 .barangay-dropdown__item:hover {
@@ -112,6 +172,13 @@
   color: var(--color-accent-warm);
 }
 
+.barangay-dropdown__item:active {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.12);
+}
+
+/* ============================================================
+   ITEM STATES
+   ============================================================ */
 .barangay-dropdown__item--highlighted {
   background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.12);
   color: var(--color-accent-warm);
@@ -147,6 +214,14 @@
   animation: checkmarkPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Mobile checkmark sizing */
+@media (max-width: 480px) {
+  .barangay-dropdown__checkmark {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 @keyframes checkmarkPop {
   from {
     opacity: 0;
@@ -165,13 +240,63 @@
   padding: var(--spacing-xl) var(--spacing-lg);
   text-align: center;
   color: var(--color-text-muted);
-  font-size: 0.9rem;
   background: rgba(0, 0, 0, 0.02);
+}
+
+/* Mobile empty state sizing */
+@media (max-width: 480px) {
+  .barangay-dropdown__empty {
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-size: 0.85rem;
+  }
+}
+
+/* Desktop empty state sizing */
+@media (min-width: 481px) {
+  .barangay-dropdown__empty {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================
+   MODAL BACKDROP (MOBILE ONLY)
+   ============================================================ */
+.barangay-dropdown__backdrop {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .barangay-dropdown__backdrop {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9998;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* ============================================================
+   WRAPPER — Ensures dropdown doesn't get clipped
+   ============================================================ */
+.office-card__barangay-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  z-index: 100;
 }
 
 /* ============================================================
    BARANGAY BUTTON — SELECTED STATE
-   Override in OfficePage.css for button styling
+   (Shared with OfficePage.css, but included here for reference)
    ============================================================ */
 .office-card__barangay-btn--selected {
   background: white;
@@ -197,76 +322,15 @@
 }
 
 /* ============================================================
-   ICON - No transform on hover (stays in place)
+   ICON — No transform on hover (stays in place)
    ============================================================ */
 .office-card__barangay-btn-icon {
-  width: 18px;
-  height: 18px;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
   flex-shrink: 0;
   transition: transform var(--transition-base);
 }
 
-/* Remove the transform from icon on hover - it stays still */
 .office-card__barangay-btn:hover .office-card__barangay-btn-icon {
   transform: none;
-}
-
-/* ============================================================
-   RESPONSIVE — TABLET (≤ 768px)
-   ============================================================ */
-@media (max-width: 768px) {
-  .barangay-dropdown {
-    width: 280px;
-  }
-
-  .barangay-dropdown__item {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 0.9rem;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE — MOBILE (≤ 480px)
-   ============================================================ */
-@media (max-width: 480px) {
-  .barangay-dropdown {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 2rem);
-    max-width: 100%;
-    max-height: 80vh;
-    margin-top: 0;
-  }
-
-  .barangay-dropdown__search {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 0.9rem;
-  }
-
-  .barangay-dropdown__list {
-    padding: var(--spacing-xs);
-    gap: 2px;
-  }
-
-  .barangay-dropdown__item {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.9rem;
-  }
-
-  .barangay-dropdown__item-text {
-    font-size: 0.9rem;
-  }
-
-  .barangay-dropdown__checkmark {
-    width: 18px;
-    height: 18px;
-  }
-
-  .barangay-dropdown__empty {
-    padding: var(--spacing-lg) var(--spacing-md);
-    font-size: 0.85rem;
-  }
 }

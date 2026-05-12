@@ -3,56 +3,83 @@ import { IoChevronDown } from 'react-icons/io5';
 import { BARANGAYS } from '../../../data/barangay';
 
 // ─── BarangayDropdown ─────────────────────────────────────────────────────────
-// Floating dropdown that appears when triggered
-// Positioned at top right, aligned with header
+// Floating dropdown with mobile/desktop optimizations
+// Mobile: Modal-style centered positioning with backdrop
+// Desktop: Absolute positioned floating dropdown
 // ──────────────────────────────────────────────────────────────────────────────
 
-const BarangayDropdown = ({ isOpen, onClose, triggerRef, onSelectBarangay }) => {
+const BarangayDropdown = ({ 
+  isOpen, 
+  onClose, 
+  triggerRef, 
+  onSelectBarangay,
+  isMobile = false,
+}) => {
+  // ─── STATE ──────────────────────────────────────────────────────────
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedBarangay, setSelectedBarangay] = useState('');
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  
   const dropdownRef = useRef(null);
   const inputRef = useRef(null);
   const listRef = useRef(null);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const backdropRef = useRef(null);
 
-  // Filter barangays based on search term
+  // ─── COMPUTED ───────────────────────────────────────────────────────
   const filteredBarangays = BARANGAYS.filter(barangay =>
     barangay.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Close dropdown when clicking outside
+  // ─── EFFECTS: OUTSIDE CLICK ─────────────────────────────────────────
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (e) => {
-      if (
-        dropdownRef.current && 
-        !dropdownRef.current.contains(e.target) &&
-        triggerRef?.current &&
-        !triggerRef.current.contains(e.target)
-      ) {
-        onClose();
-        setSearchTerm('');
-        setHighlightedIndex(-1);
+      const clickedOutside = (
+        dropdownRef.current && !dropdownRef.current.contains(e.target) &&
+        triggerRef?.current && !triggerRef.current.contains(e.target)
+      );
+
+      if (clickedOutside) {
+        closeDropdown();
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [isOpen, onClose, triggerRef]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
-  // Focus search input when dropdown opens
+  // ─── EFFECTS: BACKDROP CLICK (MOBILE) ───────────────────────────────
+  useEffect(() => {
+    if (!isOpen || !isMobile) return;
+
+    const handleBackdropClick = (e) => {
+      if (backdropRef.current === e.target) {
+        closeDropdown();
+      }
+    };
+
+    document.addEventListener('mousedown', handleBackdropClick);
+    return () => document.removeEventListener('mousedown', handleBackdropClick);
+  }, [isOpen, isMobile]);
+
+  // ─── EFFECTS: FOCUS MANAGEMENT ──────────────────────────────────────
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 0);
+      // Delay focus to ensure input is rendered
+      const focusTimer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 50);
+      
+      return () => clearTimeout(focusTimer);
     }
   }, [isOpen]);
 
-  // Keyboard navigation
+  // ─── EFFECTS: KEYBOARD NAVIGATION ───────────────────────────────────
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!isOpen) return;
+    if (!isOpen) return;
 
+    const handleKeyDown = (e) => {
       switch (e.key) {
         case 'ArrowDown':
           e.preventDefault();
@@ -60,34 +87,34 @@ const BarangayDropdown = ({ isOpen, onClose, triggerRef, onSelectBarangay }) => 
             prev < filteredBarangays.length - 1 ? prev + 1 : prev
           );
           break;
+
         case 'ArrowUp':
           e.preventDefault();
           setHighlightedIndex(prev => (prev > 0 ? prev - 1 : -1));
           break;
+
         case 'Enter':
           e.preventDefault();
           if (highlightedIndex >= 0) {
             handleSelectBarangay(filteredBarangays[highlightedIndex]);
           }
           break;
+
         case 'Escape':
           e.preventDefault();
-          onClose();
-          setSearchTerm('');
-          setHighlightedIndex(-1);
+          closeDropdown();
           break;
+
         default:
           break;
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [isOpen, highlightedIndex, filteredBarangays, onClose]);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, highlightedIndex, filteredBarangays]);
 
-  // Scroll highlighted item into view
+  // ─── EFFECTS: SCROLL INTO VIEW ──────────────────────────────────────
   useEffect(() => {
     if (highlightedIndex >= 0 && listRef.current) {
       const items = listRef.current.querySelectorAll('.barangay-dropdown__item');
@@ -97,75 +124,110 @@ const BarangayDropdown = ({ isOpen, onClose, triggerRef, onSelectBarangay }) => 
     }
   }, [highlightedIndex]);
 
-  const handleSelectBarangay = (barangay) => {
-    setSelectedBarangay(barangay);
+  // ─── HANDLERS ───────────────────────────────────────────────────────
+  const closeDropdown = () => {
     onClose();
     setSearchTerm('');
     setHighlightedIndex(-1);
+  };
+
+  const handleSelectBarangay = (barangay) => {
+    setSelectedBarangay(barangay);
+    closeDropdown();
+    
     // Call parent callback with selected barangay
     if (onSelectBarangay) {
       onSelectBarangay(barangay);
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    setHighlightedIndex(-1); // Reset highlight on search
+  };
+
+  const handleItemClick = (barangay) => {
+    handleSelectBarangay(barangay);
+  };
+
+  // ─── RENDER ─────────────────────────────────────────────────────────
   if (!isOpen) return null;
 
-  return (
-    <div className="barangay-dropdown" ref={dropdownRef}>
-      {/* Search Input */}
-      <input
-        ref={inputRef}
-        type="text"
-        className="barangay-dropdown__search"
-        placeholder="Search barangay..."
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          setHighlightedIndex(-1);
-        }}
-        aria-label="Search barangays"
-      />
+  const dropdownClassName = isMobile 
+    ? 'barangay-dropdown barangay-dropdown--mobile'
+    : 'barangay-dropdown barangay-dropdown--desktop';
 
-      {/* Items List */}
-      {filteredBarangays.length > 0 ? (
-        <ul
-          className="barangay-dropdown__list"
-          ref={listRef}
-          role="listbox"
-        >
-          {filteredBarangays.map((barangay, index) => (
-            <li
-              key={barangay}
-              className={`barangay-dropdown__item${
-                barangay === selectedBarangay
-                  ? ' barangay-dropdown__item--selected'
-                  : ''
-              }${
-                index === highlightedIndex
-                  ? ' barangay-dropdown__item--highlighted'
-                  : ''
-              }`}
-              onClick={() => handleSelectBarangay(barangay)}
-              role="option"
-              aria-selected={barangay === selectedBarangay}
-            >
-              <span className="barangay-dropdown__item-text">
-                {barangay}
-              </span>
-              {barangay === selectedBarangay && (
-                <svg className="barangay-dropdown__checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div className="barangay-dropdown__empty">
-          No barangays found matching "{searchTerm}"
-        </div>
+  return (
+    <>
+      {/* Mobile Backdrop */}
+      {isMobile && (
+        <div 
+          className="barangay-dropdown__backdrop"
+          ref={backdropRef}
+        />
       )}
-    </div>
+
+      {/* Dropdown Container */}
+      <div className={dropdownClassName} ref={dropdownRef}>
+        {/* Search Input */}
+        <input
+          ref={inputRef}
+          type="text"
+          className="barangay-dropdown__search"
+          placeholder="Search barangay..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          aria-label="Search barangays"
+        />
+
+        {/* Items List */}
+        {filteredBarangays.length > 0 ? (
+          <ul
+            className="barangay-dropdown__list"
+            ref={listRef}
+            role="listbox"
+          >
+            {filteredBarangays.map((barangay, index) => (
+              <li
+                key={barangay}
+                className={`barangay-dropdown__item${
+                  barangay === selectedBarangay
+                    ? ' barangay-dropdown__item--selected'
+                    : ''
+                }${
+                  index === highlightedIndex
+                    ? ' barangay-dropdown__item--highlighted'
+                    : ''
+                }`}
+                onClick={() => handleItemClick(barangay)}
+                role="option"
+                aria-selected={barangay === selectedBarangay}
+              >
+                <span className="barangay-dropdown__item-text">
+                  {barangay}
+                </span>
+                {barangay === selectedBarangay && (
+                  <svg 
+                    className="barangay-dropdown__checkmark" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2"
+                    aria-hidden="true"
+                  >
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="barangay-dropdown__empty">
+            No barangays found matching "{searchTerm}"
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -21,7 +21,7 @@ const OfficeCard = ({ office }) => {
 
   if (!office) return null;
 
-  const isBarangayHall = office.name === 'Barangay Hall';
+  const isBarangayHall = office.name === 'Barangay';
 
   /**
    * Handle barangay selection from dropdown

@@ -7,7 +7,7 @@
    DESIGN TOKENS (GLOBAL)
    ============================================================ */
 :root {
-  /* Colors */
+  /* ──── Colors ──── */
   --color-bg-primary:       #ffffff;
   --color-text-primary:     #1a1208;
   --color-text-muted:       #7a6a55;
@@ -18,7 +18,14 @@
   --color-border:           #f0e0c8;
   --color-border-light:     #f0e8dc;
 
-  /* Typography */
+  /* ──── RGB Color Variants (for rgba() usage) ──── */
+  --color-accent-warm-rgb:        255, 156, 67;     /* #ff9c43 */
+  --color-accent-warm-dark-rgb:   230, 133, 42;     /* #e6852a */
+  --color-text-primary-rgb:       26, 18, 8;        /* #1a1208 */
+  --color-text-muted-rgb:         122, 106, 85;     /* #7a6a55 */
+  --color-accent-light-rgb:       255, 243, 230;    /* #fff3e6 */
+
+  /* ──── Typography ──── */
   --font-family:            'DM Sans', 'Segoe UI', system-ui, sans-serif;
   --font-weight-light:      300;
   --font-weight-regular:    400;
@@ -27,7 +34,17 @@
   --font-weight-bold:       700;
   --font-weight-extrabold:  800;
 
-  /* Spacing */
+  /* ──── Font Size Scale ──── */
+  --font-size-xs:    0.75rem;    /* 12px */
+  --font-size-sm:    0.875rem;   /* 14px */
+  --font-size-base:  1rem;       /* 16px */
+  --font-size-lg:    1.125rem;   /* 18px */
+  --font-size-xl:    1.25rem;    /* 20px */
+  --font-size-2xl:   1.5rem;     /* 24px */
+  --font-size-3xl:   2.2rem;     /* 35px */
+  --font-size-4xl:   3.8rem;     /* 60px */
+
+  /* ──── Spacing ──── */
   --spacing-xs:  4px;
   --spacing-sm:  8px;
   --spacing-md:  16px;
@@ -36,29 +53,43 @@
   --spacing-2xl: 64px;
   --spacing-3xl: 96px;
 
-  /* Layout */
+  /* ──── Layout ──── */
   --max-width:   1200px;
   --page-gutter: 1.25rem;
 
-  /* Header / logo sizing — matches Navbar.jsx clamp values */
+  /* ──── Header / Logo Sizing ──── */
   --header-height: clamp(140px, 10vw, 160px);
   --logo-width:    clamp(110px,  10vw, 130px);
 
-  /* Radii */
+  /* ──── Icon Size System ──── */
+  --icon-size-sm:  14px;
+  --icon-size-md:  18px;
+  --icon-size-lg:  24px;
+  --icon-size-xl:  32px;
+
+  /* ──── Border Radius ──── */
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   20px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 4px   rgba(26,18,8,0.07);
-  --shadow-md: 0 4px 16px  rgba(26,18,8,0.10);
-  --shadow-lg: 0 12px 40px rgba(26,18,8,0.13);
+  /* ──── Shadows ──── */
+  --shadow-sm: 0 1px 4px   rgba(26, 18, 8, 0.07);
+  --shadow-md: 0 4px 16px  rgba(26, 18, 8, 0.10);
+  --shadow-lg: 0 12px 40px rgba(26, 18, 8, 0.13);
 
-  /* Transitions */
+  /* ──── Transitions ──── */
   --transition-fast: 0.18s ease;
   --transition-base: 0.28s ease;
   --transition-slow: 0.45s ease;
+
+  /* ──── Z-Index Layers ──── */
+  --z-base:       1;
+  --z-content:    10;
+  --z-dropdown:   100;
+  --z-modal:      200;
+  --z-overlay:    300;
+  --z-tooltip:    400;
 }
 
 /* ============================================================
@@ -146,6 +177,17 @@ button {
   }
 }
 
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -166,6 +208,17 @@ button {
   }
 }
 
+@keyframes checkmarkPop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* ============================================================
    GLOBAL UTILITIES
    ============================================================ */
@@ -174,7 +227,10 @@ button {
   transform: translateY(20px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 .fade-in.delay-1 { transition-delay: 0.10s; }
 .fade-in.delay-2 { transition-delay: 0.20s; }
 .fade-in.delay-3 { transition-delay: 0.30s; }
@@ -209,7 +265,7 @@ button {
   background: var(--color-accent-warm);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(255,156,67,0.35);
+  box-shadow: 0 4px 14px rgba(var(--color-accent-warm-rgb), 0.35);
 }
 
 .button--primary {
@@ -221,7 +277,7 @@ button {
   background: var(--color-accent-warm-dark);
   border-color: var(--color-accent-warm-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(255,156,67,0.40);
+  box-shadow: 0 4px 14px rgba(var(--color-accent-warm-rgb), 0.40);
 }
 
 .button--ghost {
@@ -241,7 +297,7 @@ button {
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: var(--z-dropdown);
   padding: 0 var(--page-gutter);
   background: transparent;
   border-bottom: 1px solid transparent;
@@ -331,8 +387,8 @@ button {
 }
 
 .header__dropdown-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
   transition: transform var(--transition-base);
 }
 
@@ -357,7 +413,7 @@ button {
   pointer-events: none;
   transform: translateX(-50%) translateY(-10px);
   transition: opacity var(--transition-base), transform var(--transition-base);
-  z-index: 10;
+  z-index: var(--z-content);
   overflow: hidden;
 }
 
@@ -392,8 +448,8 @@ button {
 }
 
 .header__dropdown-item-icon {
-  width: 18px;
-  height: 18px;
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
   flex-shrink: 0;
   color: var(--color-accent-warm);
 }
@@ -463,7 +519,7 @@ button {
   position: fixed;
   top: 0; right: 0; bottom: 0;
   width: min(280px, 80vw);
-  z-index: 100;
+  z-index: var(--z-dropdown);
   background: #ffffff;
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
   padding: calc(var(--header-height) + 24px) 2rem 2rem;

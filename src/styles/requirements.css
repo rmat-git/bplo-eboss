@@ -1,0 +1,418 @@
+/* ============================================================
+   REQUIREMENTS COMPONENT (SHARED)
+   
+   Used by: NewPage.css, RenewalPage.css
+   
+   This component defines the requirements card UI that appears
+   on multi-step form pages. By centralizing this here, we eliminate
+   270+ lines of duplicate CSS and ensure consistency.
+   
+   To use: Add @import './_requirements.css'; at the top of 
+           NewPage.css and RenewalPage.css, then remove the old 
+           requirements CSS (lines 179-450 from original files).
+   ============================================================ */
+
+/* ============================================================
+   REQUIREMENTS SECTION
+   ============================================================ */
+.requirements-section {
+  padding: var(--spacing-2xl) var(--page-gutter);
+  background: var(--color-accent-light);
+}
+
+.requirements-section__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.requirements-section__title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+}
+
+.requirements-section__subtitle {
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.requirements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   REQUIREMENT CARD
+   ============================================================ */
+.requirement-card {
+  background: var(--color-bg-primary);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-base);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.requirement-card:hover {
+  border-color: var(--color-accent-warm);
+  box-shadow: var(--shadow-md);
+}
+
+.requirement-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 var(--spacing-lg) 0;
+  gap: var(--spacing-sm);
+}
+
+.requirement-card__header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.requirement-card__step-tag {
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--color-accent-medium);
+  color: var(--color-text-primary);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.requirement-card__title {
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.requirement-card__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: var(--spacing-md);
+}
+
+.requirement-card__content {
+  padding: 0;
+  flex-grow: 1;
+}
+
+.requirement-card__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.requirement-card__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+.requirement-card__list-item::before {
+  content: '›';
+  color: var(--color-accent-warm);
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.requirement-card__sub-list {
+  list-style: none;
+  margin-top: var(--spacing-xs);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.requirement-card__item-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.requirement-card__sub-item {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding-left: var(--spacing-md);
+  position: relative;
+}
+
+.requirement-card__sub-item::before {
+  content: '–';
+  position: absolute;
+  left: 4px;
+  color: var(--color-accent-medium);
+}
+
+.requirement-card__sub-heading {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.requirement-card__sub-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-accent-warm);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.85rem;
+  transition: all var(--transition-base);
+}
+
+.requirement-card__sub-action-link:hover {
+  text-decoration: underline;
+}
+
+.requirement-card__sub-action-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Link styling within sub-items */
+.requirement-card__sub-link {
+  color: var(--color-accent-warm);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-base);
+  margin-left: 4px;
+}
+
+.requirement-card__sub-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Action link indented: "Click here for..." */
+.requirement-card__sub-action {
+  padding-left: var(--spacing-lg);
+  margin-bottom: 12px;
+}
+
+/* Action link styling - simple underlined link with icon */
+.requirement-card__action-link {
+  color: var(--color-accent-warm);
+  background: none;
+  text-decoration: underline;
+  padding: 0;
+  border-radius: 0;
+  font-weight: var(--font-weight-regular);
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+}
+
+/* Icon styling */
+.requirement-card__action-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.requirement-card__action-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.requirement-card__action-link:hover .requirement-card__action-icon {
+  transform: translateX(2px) translateY(-2px);
+}
+
+.requirement-card__action-link:active {
+  opacity: 0.7;
+}
+
+/* ============================================================
+   REQUIREMENT CARD — FOOTER & BUTTON
+   ============================================================ */
+.requirement-card__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.requirement-card__button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-accent-warm);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.requirement-card__button:hover {
+  background: var(--color-accent-warm);
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.requirement-card__button:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE — DESKTOP (≥ 769px)
+   Constrain content width on large screens
+   ============================================================ */
+@media (min-width: 769px) {
+  .requirements-section__header,
+  .requirements-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .requirements-section {
+    padding: var(--spacing-xl) var(--page-gutter);
+  }
+
+  .requirements-section__title {
+    font-size: 1.5rem;
+  }
+
+  .requirements-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .requirement-card {
+    padding: var(--spacing-md);
+  }
+
+  .requirement-card__title {
+    font-size: 0.95rem;
+  }
+
+  .requirement-card__list-item {
+    font-size: 0.85rem;
+  }
+
+  .requirement-card__sub-item {
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .requirements-section {
+    padding: var(--spacing-lg) var(--page-gutter);
+  }
+
+  .requirements-section__title {
+    font-size: 1.25rem;
+  }
+
+  .requirements-section__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .requirements-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .requirement-card {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+
+  .requirement-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: var(--spacing-md);
+    gap: var(--spacing-xs);
+  }
+
+  .requirement-card__divider {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .requirement-card__step-tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+  }
+
+  .requirement-card__title {
+    font-size: 0.9rem;
+  }
+
+  .requirement-card__list-item {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .requirement-card__sub-item {
+    font-size: 0.8rem;
+    padding-left: var(--spacing-sm);
+  }
+
+  .requirement-card__sub-heading {
+    font-size: 0.85rem;
+  }
+
+  .requirement-card__item-label {
+    font-size: 0.9rem;
+  }
+
+  .requirement-card__action-link {
+    font-size: 0.9rem;
+  }
+
+  .requirement-card__action-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .requirement-card__button {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.95rem;
+  }
+}

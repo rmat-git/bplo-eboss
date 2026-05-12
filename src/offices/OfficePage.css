@@ -1,6 +1,12 @@
 /* ============================================================
    OFFICES PAGE STYLES (Dual Tab Bar Layout)
+   Mobile-first approach with clear desktop optimizations
    Location: src/pages/OfficePage.css
+   
+   BREAKPOINTS:
+   - Mobile: ≤ 480px
+   - Tablet: 481px - 768px
+   - Desktop: ≥ 769px
    ============================================================ */
 
 .offices-page__content {
@@ -8,12 +14,27 @@
   box-sizing: border-box;
 }
 
+.offices-page__content--mobile {
+  /* Mobile-specific optimizations */
+}
+
+.offices-page__content--desktop {
+  /* Desktop-specific optimizations */
+}
+
+.offices-page__empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
 /* ============================================================
-   HERO SECTION
+   HERO SECTION — SHARED
    ============================================================ */
 .hero-offices {
   background: linear-gradient(160deg, #fff8f0 0%, #ffffff 45%, #fff3e6 100%);
-  padding: var(--spacing-3xl) var(--page-gutter) var(--spacing-2xl);
+  padding: clamp(25vh, 20vw, 12vh) 1.25rem clamp(10vh, 12vw, 10vh);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -23,16 +44,36 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(25vh, 20vw, 12vh) 1.25rem clamp(10vh, 12vw, 10vh);
 }
 
+
 .hero-offices .hero__title {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: var(--font-weight-extrabold);
   color: var(--color-text-primary);
   line-height: 1.2;
   margin: 0;
   letter-spacing: -1.5px;
+}
+
+/* Mobile title sizing */
+@media (max-width: 480px) {
+  .hero-offices .hero__title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Tablet title sizing */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-offices .hero__title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Desktop title with clamp */
+@media (min-width: 769px) {
+  .hero-offices .hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+  }
 }
 
 .hero-offices .hero__title em {
@@ -41,7 +82,7 @@
 }
 
 .hero-offices .hero__hint {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   margin: 0;
   line-height: 1.6;
@@ -52,29 +93,53 @@
    ============================================================ */
 .hero__section-toggle {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   justify-content: center;
   align-items: center;
   margin-top: var(--spacing-lg);
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  flex-direction: column;
+}
+
+@media (min-width: 481px) {
+  .hero__section-toggle {
+    flex-direction: row;
+    gap: var(--spacing-lg);
+  }
 }
 
 .hero__section-toggle-btn {
-  padding: var(--spacing-md) var(--spacing-xl);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-size: 0.95rem;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all var(--transition-base);
   font-family: inherit;
-  white-space: nowrap;
-  min-width: 180px;
   text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Mobile button */
+@media (max-width: 480px) {
+  .hero__section-toggle-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet & Desktop button */
+@media (min-width: 481px) {
+  .hero__section-toggle-btn {
+    padding: var(--spacing-md) var(--spacing-xl);
+    min-width: 180px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
 }
 
 .hero__section-toggle-btn:hover {
@@ -105,15 +170,32 @@
 .clearance-group-section {
   width: 100%;
   box-sizing: border-box;
-  padding: var(--spacing-2xl) var(--page-gutter);
-}
-
-.clearance-group-section--required {
   background: var(--color-bg-primary);
 }
 
 .clearance-group-section--special {
   background: var(--color-accent-light);
+}
+
+/* Mobile padding */
+@media (max-width: 480px) {
+  .clearance-group-section {
+    padding: 24px 16px;
+  }
+}
+
+/* Tablet padding */
+@media (min-width: 481px) and (max-width: 768px) {
+  .clearance-group-section {
+    padding: 32px 24px;
+  }
+}
+
+/* Desktop padding */
+@media (min-width: 769px) {
+  .clearance-group-section {
+    padding: var(--spacing-2xl) var(--page-gutter);
+  }
 }
 
 .clearance-group-section__inner {
@@ -138,43 +220,89 @@
 }
 
 /* ============================================================
-   SECTION HEADERS - REQUIRED
+   SECTION HEADERS — REQUIRED
    ============================================================ */
 .clearance-group-section__title--required {
- font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: var(--font-weight-extrabold);
   text-transform: uppercase;
   color: var(--color-accent-warm);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Mobile title */
+@media (max-width: 480px) {
+  .clearance-group-section__title--required {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet title */
+@media (min-width: 481px) and (max-width: 768px) {
+  .clearance-group-section__title--required {
+    font-size: 1.8rem;
+  }
+}
+
+/* Desktop title with clamp */
+@media (min-width: 769px) {
+  .clearance-group-section__title--required {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+  }
 }
 
 .clearance-group-section__subtitle--required {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
   width: 100%;
   line-height: 1.6;
+  margin: 8px 0 0 0;
 }
 
 /* ============================================================
-   SECTION HEADERS - SPECIAL
+   SECTION HEADERS — SPECIAL
    ============================================================ */
 .clearance-group-section__title--special {
- font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: var(--font-weight-extrabold);
   text-transform: uppercase;
   color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Mobile title */
+@media (max-width: 480px) {
+  .clearance-group-section__title--special {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet title */
+@media (min-width: 481px) and (max-width: 768px) {
+  .clearance-group-section__title--special {
+    font-size: 1.8rem;
+  }
+}
+
+/* Desktop title with clamp */
+@media (min-width: 769px) {
+  .clearance-group-section__title--special {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+  }
 }
 
 .clearance-group-section__subtitle--special {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: var(--font-weight-regular);
   color: var(--color-text-muted);
   width: 100%;
   line-height: 1.6;
+  margin: 8px 0 0 0;
 }
 
 /* ============================================================
-   TAB BAR
+   TAB BAR — SHARED
    ============================================================ */
 .offices-page__tabs-container {
   background: var(--color-bg-primary);
@@ -205,13 +333,27 @@
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--color-text-muted);
-  font-size: 0.95rem;
   font-weight: var(--font-weight-semibold);
   text-align: center;
   cursor: pointer;
   transition: all var(--transition-base);
   font-family: inherit;
   white-space: nowrap;
+}
+
+/* Mobile tab font */
+@media (max-width: 480px) {
+  .offices-page__tab {
+    font-size: 0.7rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}
+
+/* Tablet & Desktop tab font */
+@media (min-width: 481px) {
+  .offices-page__tab {
+    font-size: 0.95rem;
+  }
 }
 
 .offices-page__tab:hover {
@@ -226,10 +368,9 @@
 }
 
 /* ============================================================
-   OFFICE DETAIL SECTION
+   OFFICE DETAIL SECTION — SHARED
    ============================================================ */
 .offices-page__detail {
-  padding: var(--spacing-xl);
   width: 100%;
   box-sizing: border-box;
   animation: fadeIn 0.2s ease;
@@ -238,7 +379,22 @@
   background: var(--color-bg-primary);
   border: 1.5px solid var(--color-border);
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-top: none;
   margin-top: 0;
+}
+
+/* Mobile padding */
+@media (max-width: 480px) {
+  .offices-page__detail {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Tablet & Desktop padding */
+@media (min-width: 481px) {
+  .offices-page__detail {
+    padding: var(--spacing-xl);
+  }
 }
 
 @keyframes fadeIn {
@@ -247,7 +403,7 @@
 }
 
 /* ============================================================
-   OFFICE CARD
+   OFFICE CARD — SHARED
    ============================================================ */
 .office-card {
   background: var(--color-bg-primary);
@@ -266,8 +422,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-md) 0 var(--spacing-md) 0;
+  padding: var(--spacing-md) 0;
   gap: var(--spacing-sm);
+}
+
+/* Mobile header wrap */
+@media (max-width: 480px) {
+  .office-card__header {
+    flex-wrap: wrap;
+    padding: var(--spacing-md) 0;
+  }
 }
 
 .office-card__header-left {
@@ -287,15 +451,22 @@
 }
 
 .office-card__applicable-tag {
-  display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.1);
-  color: var(--color-accent-warm);
-  border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  border: 1px solid rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.office-card__applicable-tag--required {
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.15);
+  color: var(--color-accent-warm);
+}
+
+.office-card__applicable-tag--special {
+  background: rgba(82, 182, 154, 0.15);
+  color: rgb(82, 182, 154);
 }
 
 /* ============================================================
@@ -327,10 +498,23 @@
   letter-spacing: 0.5px;
 }
 
+@media (max-width: 480px) {
+  .office-card__label {
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+  }
+}
+
 .office-card__text {
   font-size: 0.95rem;
   color: var(--color-text-primary);
   line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .office-card__text {
+    font-size: 0.85rem;
+  }
 }
 
 .office-card__contact-link {
@@ -376,6 +560,12 @@
   position: relative;
 }
 
+@media (max-width: 480px) {
+  .office-card__service-item {
+    font-size: 0.85rem;
+  }
+}
+
 .office-card__service-item::before {
   content: '✓';
   position: absolute;
@@ -417,6 +607,13 @@
   padding-left: var(--spacing-lg);
   position: relative;
   line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .office-card__req-item {
+    font-size: 0.85rem;
+    padding-left: var(--spacing-md);
+  }
 }
 
 .office-card__req-item::before {
@@ -470,6 +667,13 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 480px) {
+  .office-card__footer {
+    gap: 6px;
+    padding-top: var(--spacing-sm);
+  }
+}
+
 .office-card__action-link {
   display: inline-flex;
   align-items: center;
@@ -486,478 +690,69 @@
   transform: translateX(3px);
 }
 
+@media (max-width: 480px) {
+  .office-card__action-link {
+    font-size: 0.9rem;
+    gap: 4px;
+  }
+}
+
 .office-card__action-icon {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
 }
 
-/* ============================================================
-   BUTTON WRAPPER (Back + Toggle)
-   ============================================================ */
-.offices-page__button-wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-2xl);
-  padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--color-border);
-  justify-content: flex-start;
-}
-
-/* ============================================================
-   BACK BUTTON
-   ============================================================ */
-.offices-page__back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: transparent;
-  color: var(--color-accent-warm);
-  border: 1.5px solid var(--color-accent-warm);
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  text-decoration: none;
-  font-family: inherit;
-  white-space: nowrap;
-}
-
-.offices-page__back-button:hover {
-  background: var(--color-accent-light);
-  transform: translateX(-2px);
-}
-
-.offices-page__back-button:active {
-  transform: translateX(0);
-}
-
-.offices-page__back-button-icon {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-/* ============================================================
-   SECTION TOGGLE BUTTON - ORANGE
-   ============================================================ */
-.offices-page__section-toggle-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-xl);
-  background-color: #ff9500; /* Orange */
-  color: white;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  font-family: inherit;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.2);
-}
-
-.offices-page__section-toggle-button:hover {
-  background-color: #ff8500;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(255, 149, 0, 0.35);
-}
-
-.offices-page__section-toggle-button:active {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(255, 149, 0, 0.25);
-}
-
-.offices-page__section-toggle-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.15), 0 2px 8px rgba(255, 149, 0, 0.2);
-}
-
-/* Smooth page transition animation */
-@keyframes pageTransitionIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.clearance-group-section {
-  animation: pageTransitionIn 0.4s ease-out forwards;
-}
-
-/* ============================================================
-   RESPONSIVE — HERO TOGGLE (Tablet ≤ 768px)
-   ============================================================ */
-@media (max-width: 768px) {
-  .hero-offices { gap: var(--spacing-md); }
-  .hero-offices .hero__title { font-size: clamp(1.8rem, 4vw, 2.5rem); }
-
-  .hero__section-toggle {
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-  }
-
-  .hero__section-toggle-btn {
-    flex: 1;
-    min-width: auto;
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 0.9rem;
-  }
-
-  .clearance-group-section { padding: var(--spacing-xl) var(--page-gutter); }
-  .clearance-group-section__inner { padding: 0; gap: 0; }
-  
-  .clearance-group-section__title--required { font-size: 1.75rem; }
-  .clearance-group-section__title--special { font-size: 1.75rem; }
-
-  .offices-page__tabs-container {
-    padding: 0;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .offices-page__tabs-scroll { padding: var(--spacing-sm); }
-  .offices-page__tab { padding: var(--spacing-sm) var(--spacing-md); font-size: 0.9rem; }
-
-  .offices-page__detail {
-    padding: var(--spacing-lg);
-    margin-top: 0;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  }
-
-  .office-card { padding: 0; }
-
-  /* Downloadables - Tablet */
-  .office-card__downloadables {
-    margin-top: var(--spacing-lg, 16px);
-  }
-
-  .office-card__download-row {
-    padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
-  }
-
-  .office-card__download-item-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .office-card__download-text {
-    font-size: 0.9rem;
-  }
-
-  .office-card__download-btn {
-    padding: var(--spacing-sm, 8px) var(--spacing-sm, 8px);
-  }
-
-  .office-card__download-btn-label {
-    display: none;
-  }
-
-  .office-card__download-btn-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Button Wrapper - Mobile */
-  .offices-page__button-wrapper {
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-xl);
-  }
-
-  .offices-page__back-button,
-  .offices-page__section-toggle-button {
-    width: 100%;
-  }
-}
-
-/* ============================================================
-   RESPONSIVE — MOBILE (≤ 480px)
-   ============================================================ */
 @media (max-width: 480px) {
-  .offices-page__content { width: 100%; }
-
-  .hero-offices { gap: var(--spacing-sm); }
-  .hero-offices .hero__title { font-size: 1.6rem; line-height: 1.15; margin-bottom: var(--spacing-xs); }
-  .hero-offices .hero__hint { font-size: 0.9rem; }
-
-  .hero__section-toggle {
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
-  }
-
-  .hero__section-toggle-btn {
-    flex: 1;
-    min-width: auto;
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.85rem;
-    border-width: 1px;
-  }
-
-  .clearance-group-section { padding: var(--spacing-lg) var(--spacing-md); }
-  .clearance-group-section__inner { padding: 0; gap: 0; border-radius: 0; }
-  
-  .clearance-group-section__title--required { font-size: 1.4rem; }
-  .clearance-group-section__subtitle--required { font-size: 0.9rem; }
-  
-  .clearance-group-section__title--special { font-size: 1.4rem; }
-  .clearance-group-section__subtitle--special { font-size: 0.9rem; }
-
-  .offices-page__tabs-container { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-  .offices-page__tabs-scroll { padding: var(--spacing-xs); }
-  .offices-page__tab { padding: var(--spacing-xs) var(--spacing-md); font-size: 0.8rem; border-radius: var(--radius-sm); }
-
-  .offices-page__detail {
-    padding: var(--spacing-md);
-    margin-top: 0;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  }
-
-  .office-card { padding: 0; }
-  .office-card__label { font-size: 0.8rem; margin-bottom: 3px; }
-  .office-card__text,
-  .office-card__service-item,
-  .office-card__req-item { font-size: 0.85rem; }
-
-  .office-card__action-link { font-size: 0.9rem; gap: 4px; }
-  .office-card__action-icon { width: 16px; height: 16px; }
-  .office-card__footer { gap: 6px; padding-top: var(--spacing-sm); }
-  .office-card__tag { font-size: 0.75rem; padding: 3px 10px; }
-
-  .office-card__req-item { font-size: 0.85rem; padding-left: var(--spacing-md); }
-  .office-card__applicable-tag { font-size: 0.75rem; padding: 2px 8px; }
-
-  /* Downloadables - Mobile */
-  .office-card__downloadables {
-    margin-top: var(--spacing-lg, 16px);
-    padding-top: var(--spacing-md, 12px);
-  }
-
-  .office-card__download-row {
-    padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
-    gap: var(--spacing-sm, 8px);
-  }
-
-  .office-card__download-item-icon {
-    fill: var(--color-accent-warm);
+  .office-card__action-icon {
     width: 16px;
     height: 16px;
   }
-
-  .office-card__download-text {
-    font-size: 0.85rem;
-  }
-
-  .office-card__download-btn {
-    padding: var(--spacing-xs, 6px) var(--spacing-xs, 6px);
-  }
-
-  .office-card__download-btn-label {
-    display: none;
-  }
-
-  .office-card__download-btn-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* Button Wrapper - Mobile */
-  .offices-page__button-wrapper {
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-    padding-top: var(--spacing-lg);
-  }
-
-  .offices-page__back-button {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.85rem;
-    gap: 6px;
-    width: 100%;
-  }
-
-  .offices-page__back-button-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .offices-page__section-toggle-button {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.85rem;
-    width: 100%;
-  }
 }
 
 /* ============================================================
-   DOWNLOADABLES SECTION
-   Added to OfficeCard component for PDF downloads
-   ============================================================ */
-
-.office-card__downloadables {
-  margin-top: var(--spacing-xl, 24px);
-  padding-top: var(--spacing-lg, 16px);
-  border-top: 1px solid var(--color-border);
-}
-
-.office-card__downloadables-header {
-  margin-bottom: var(--spacing-md, 12px);
-}
-
-.office-card__downloadables-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm, 8px);
-}
-
-/* ============================================================
-   DOWNLOAD ROW (TEXT + BUTTON)
-   ============================================================ */
-
-.office-card__download-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
-  border-radius: var(--radius-md);
-  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
-  gap: var(--spacing-md, 12px);
-}
-
-/* ============================================================
-   DOWNLOAD LEFT (ICON + TEXT)
-   ============================================================ */
-
-.office-card__download-left {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md, 12px);
-  flex: 1;
-  min-width: 0;
-}
-
-/* ============================================================
-   DOWNLOAD ITEM ICON
-   ============================================================ */
-
-.office-card__download-item-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--color-text-primary);
-}
-
-/* ============================================================
-   DOWNLOAD TEXT
-   ============================================================ */
-
-.office-card__download-text {
-  flex: 1;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ============================================================
-   DOWNLOAD BUTTON
-   ============================================================ */
-
-.office-card__download-btn {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm, 8px);
-  padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
-  background: var(--color-accent-warm);
-  color: white;
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  font-family: inherit;
-  font-weight: 500;
-}
-
-.office-card__download-btn:hover {
-  background: var(--color-accent-warm-darker, #d97f1a);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
-}
-
-.office-card__download-btn:active {
-  transform: translateY(0);
-}
-
-.office-card__download-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
-}
-
-/* ============================================================
-   DOWNLOAD BUTTON LABEL (DESKTOP ONLY)
-   ============================================================ */
-
-.office-card__download-btn-label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: white;
-  white-space: nowrap;
-}
-
-/* ============================================================
-   DOWNLOAD BUTTON ICON
-   ============================================================ */
-
-.office-card__download-btn-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: white;
-}
-
-/* ============================================================
-   BARANGAY HALL BUTTON IN OFFICE CARD
+   BARANGAY BUTTON — SHARED
    ============================================================ */
 .office-card__barangay-wrapper {
   position: relative;
   display: inline-block;
+  overflow: visible;
+  z-index: 100;
 }
 
 .office-card__barangay-btn {
-  padding: var(--spacing-sm) var(--spacing-lg);
   background: var(--color-accent-warm);
   color: white;
   border: none;
-  border-radius: var(--radius-md);
-  font-size: 0.85rem;
+  border-radius: var(--radius-sm);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all var(--transition-base);
   font-family: inherit;
   white-space: nowrap;
   flex-shrink: 0;
-  margin-left: var(--spacing-md);
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
 }
 
-.office-card__barangay-btn-icon {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
+/* Mobile button */
+@media (max-width: 480px) {
+  .office-card__barangay-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    gap: 4px;
+    margin-left: var(--spacing-xs);
+  }
+}
+
+/* Tablet & Desktop button */
+@media (min-width: 481px) {
+  .office-card__barangay-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: 0.85rem;
+    margin-left: var(--spacing-md);
+  }
 }
 
 .office-card__barangay-btn:hover {
@@ -976,20 +771,32 @@
 }
 
 .office-card__barangay-btn-icon {
-  width: 18px;
-  height: 18px;
   flex-shrink: 0;
   transition: transform var(--transition-base);
 }
 
-/* Icon stays in place on hover - no transform */
+/* Mobile icon */
+@media (max-width: 480px) {
+  .office-card__barangay-btn-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Tablet & Desktop icon */
+@media (min-width: 481px) {
+  .office-card__barangay-btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .office-card__barangay-btn:hover .office-card__barangay-btn-icon {
   transform: none;
 }
 
 /* ============================================================
    BARANGAY BUTTON — SELECTED STATE
-   White background with orange outline and text
    ============================================================ */
 .office-card__barangay-btn--selected {
   background: white;
@@ -1016,52 +823,320 @@
 }
 
 /* ============================================================
-   RESPONSIVE — TABLET (≤ 768px) - BARANGAY BUTTON
+   BUTTON WRAPPER (Back + Toggle)
    ============================================================ */
-@media (max-width: 768px) {
-  .office-card__barangay-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.8rem;
-    margin-left: var(--spacing-sm);
-  }
+.offices-page__button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+  justify-content: flex-start;
+}
 
-  .barangay-dropdown {
-    width: 280px;
+/* Mobile button wrapper */
+@media (max-width: 480px) {
+  .offices-page__button-wrapper {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+  }
+}
+
+/* Tablet button wrapper */
+@media (min-width: 481px) and (max-width: 768px) {
+  .offices-page__button-wrapper {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
   }
 }
 
 /* ============================================================
-   RESPONSIVE — MOBILE (≤ 480px) - BARANGAY BUTTON
+   BACK BUTTON
    ============================================================ */
+.offices-page__back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: transparent;
+  color: var(--color-accent-warm);
+  border: 1.5px solid var(--color-accent-warm);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.offices-page__back-button:hover {
+  background: var(--color-accent-light);
+  transform: translateX(-2px);
+}
+
+.offices-page__back-button:active {
+  transform: translateX(0);
+}
+
+/* Mobile back button */
 @media (max-width: 480px) {
-  .office-card__barangay-btn {
-    padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.75rem;
-    margin-left: var(--spacing-xs);
+  .offices-page__back-button {
+    flex: 1;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
     gap: 4px;
   }
+}
 
-  .office-card__barangay-btn-icon {
-    width: 14px;
-    height: 14px;
+/* Tablet back button */
+@media (min-width: 481px) and (max-width: 768px) {
+  .offices-page__back-button {
+    width: 100%;
+  }
+}
+
+.offices-page__back-button-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .offices-page__back-button-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ============================================================
+   SECTION TOGGLE BUTTON - ORANGE
+   ============================================================ */
+.offices-page__section-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background-color: #ff9500; /* Orange */
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.2);
+}
+
+.offices-page__section-toggle-button:hover {
+  background-color: #ff8500;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 149, 0, 0.35);
+}
+
+.offices-page__section-toggle-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(255, 149, 0, 0.25);
+}
+
+.offices-page__section-toggle-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.15), 0 2px 8px rgba(255, 149, 0, 0.2);
+}
+
+/* Mobile section toggle button */
+@media (max-width: 480px) {
+  .offices-page__section-toggle-button {
+    flex: 1;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet section toggle button */
+@media (min-width: 481px) and (max-width: 768px) {
+  .offices-page__section-toggle-button {
+    width: 100%;
+  }
+}
+
+/* Smooth page transition animation */
+@keyframes pageTransitionIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.clearance-group-section {
+  animation: pageTransitionIn 0.4s ease-out forwards;
+}
+
+/* ============================================================
+   DOWNLOADABLES SECTION
+   ============================================================ */
+.office-card__downloadables-section {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.office-card__downloadables-header {
+  margin-bottom: var(--spacing-md);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.office-card__downloadables-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* ============================================================
+   DOWNLOAD ROW (TEXT + BUTTON)
+   ============================================================ */
+.office-card__download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-sm);
+  background: rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.05);
+  gap: var(--spacing-md);
+}
+
+/* Mobile download row */
+@media (max-width: 480px) {
+  .office-card__download-row {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+}
+
+/* ============================================================
+   DOWNLOAD LEFT (ICON + TEXT)
+   ============================================================ */
+.office-card__download-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .office-card__download-left {
+    gap: 8px;
+  }
+}
+
+.office-card__download-item-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 480px) {
+  .office-card__download-item-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.office-card__download-text {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .office-card__download-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================
+   DOWNLOAD BUTTON
+   ============================================================ */
+.office-card__download-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-accent-warm);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.office-card__download-btn:hover {
+  background: var(--color-accent-warm-darker, #d97f1a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
+}
+
+.office-card__download-btn:active {
+  transform: translateY(0);
+}
+
+.office-card__download-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+.office-card__download-btn-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .office-card__download-btn-label {
+    display: none;
   }
 
-  /* Header becomes flex-wrap on mobile if button wraps */
-  .office-card__header {
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
+  .office-card__download-btn {
+    padding: 6px 8px;
   }
+}
 
-  /* Mobile dropdown - centered modal style */
-  .barangay-dropdown {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 2rem);
-    max-width: 100%;
-    max-height: 80vh;
-    margin-top: 0;
+.office-card__download-btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .office-card__download-btn-icon {
+    width: 16px;
+    height: 16px;
   }
 }

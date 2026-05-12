@@ -28,8 +28,8 @@ export const OFFICES = [
      ══════════════════════════════════════════════════════════ */
 
   {
-    name: 'Barangay Hall',
-    fullName: 'Barangay Hall',
+    name: 'Barangay',
+    fullName: 'Barangay',
     address: '',         // fill in actual address
     phone: '',           // fill in actual phone
     email: '',
@@ -92,8 +92,8 @@ export const OFFICES = [
     description: 'Issues the Zoning Clearance confirming that the proposed business use is allowed in the location\'s zoning classification.',
     services: ['Zoning Clearance'],
     requirements: [
-      
-      'Approach the Zoning Division and present the Business Permit Application Form',
+      'Business Application Form',
+      'Pictures of the Area/Vicinity Map',
     ],
     applicableTo: [],
   },
@@ -105,12 +105,13 @@ export const OFFICES = [
     phone: '',
     email: '',
     hours: 'Monday – Friday, 8:00 AM – 5:00 PM',
-    website: '',
+    website: 'https://bacolodcityhealth.com/esd/',
     link: '',
     description: 'Issues the Sanitary Permit to Operate as part of the business permit application process.',
     services: ['Sanitary Permit to Operate'],
     requirements: [
-      'Duly accomplished form together with the Business Permit Application',
+      'Duly Accomplished Form',
+      'Business Permit Application',
     ],
     applicableTo: [],
   },
@@ -153,7 +154,7 @@ export const OFFICES = [
         label: 'For Renewals',
         items: [
           'Annual Inspection Billing with O.R. / Certificate of Annual Inspection',
-          ' Business Permit Application'
+          ' Business Permit Application',
         ],
       },
       {
@@ -194,7 +195,7 @@ export const OFFICES = [
      ══════════════════════════════════════════════════════════ */
 
   {
-    name: 'CAO',
+    name: 'Agriculture',
     fullName: 'City Agriculture Office',
     address: '',
     phone: '',
@@ -207,12 +208,12 @@ export const OFFICES = [
     requirements: [
       'Duly Filled-Out and Signed Application Form',
       'Certification from the Bureau of Animal Industry (BAI)'
-    ],   // add specific requirements when available
+    ],
     applicableTo: ['Agriculture-related Businesses'],
   },
 
   {
-    name: 'CVO',
+    name: 'Veterinary',
     fullName: 'City Veterinary Office',
     address: '',
     phone: '',
@@ -230,7 +231,7 @@ export const OFFICES = [
   },
 
   {
-    name: 'CTO',
+    name: 'Tourism',
     fullName: 'City Tourism Office',
     address: '',
     phone: '',
@@ -263,7 +264,7 @@ export const OFFICES = [
   },
 
   {
-    name: 'CA',
+    name: 'Admin',
     fullName: 'City Administrator\'s Office',
     address: '',
     phone: '',
@@ -271,7 +272,7 @@ export const OFFICES = [
     hours: 'Monday – Friday, 8:00 AM – 5:00 PM',
     website: '',
     link: '',
-    description: 'Issues City Ad / City Administrator Clearance for businesses operating in the three major markets and Manukan Country.',
+    description: 'Issues City Ad / City Administrator Clearance for businesses operating within the 3 Major Markets & Manukan Country',
     services: [
       'City Administrator Clearance',
       'Request of MABBCAB (Manual Application)',
@@ -317,7 +318,7 @@ export const OFFICES = [
   },
 
   {
-    name: 'BTTMD',
+    name: 'Traffic',
     fullName: 'Bacolod Traffic and Transport Management Department',
     address: '',
     phone: '',
@@ -325,10 +326,14 @@ export const OFFICES = [
     hours: 'Monday – Friday, 8:00 AM – 5:00 PM',
     website: '',
     link: '',
-    description: 'Issues BTTMD Clearance for businesses regulated under its scope.',
-    services: ['BTTMD Clearance'],
-    requirements: [],
-    applicableTo: ['BTTMD-regulated Businesses'],
+    description: 'Issues Traffic Clearance for businesses regulated under its scope.',
+    services: ['Traffic Clearance'],
+    requirements: [
+      'BTTMD Clearance',
+      'Barangay Clearance',
+      'Valid Franchise',
+    ],
+    applicableTo: ['Transportation-related Businesses'],
   },
 
   {
