@@ -71,7 +71,7 @@ const OfficeCard = ({ office }) => {
       const link = document.createElement('a');
       // Construct path from web root: /downloads/{filename}
       // The filename already includes subfolder from offices.js
-      link.href = `/downloads/${filename}`;
+      link.href = `public/downloads/${filename}`;
       link.download = filename.split('/').pop(); // Extract just the filename for download
       document.body.appendChild(link);
       link.click();

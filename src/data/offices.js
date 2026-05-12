@@ -21,7 +21,7 @@
  *                  that require a clearance from this office
  *   downloadables — (optional) array of downloadable files
  *                  Each object has:
- *                  - filename: path to file in public/downloads/ (include subfolder)
+ *                  - filename: actual filename in public/downloads/
  *                  - label: display name (e.g., "Application Form")
  *                  - type: 'form', 'checklist', 'guide', 'document', 'certificate'
  *                           (determines icon automatically)
@@ -56,12 +56,12 @@ export const OFFICES = [
     applicableTo: [],
     downloadables: [
       {
-        filename: 'barangay/application-form.pdf',
+        filename: 'barangay-application-form.pdf',
         label: 'Application Form',
         type: 'form',
       },
       {
-        filename: 'barangay/requirements-checklist.pdf',
+        filename: 'barangay-requirements-checklist.pdf',
         label: 'Requirements Checklist',
         type: 'checklist',
       },
@@ -97,11 +97,16 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'bfp/BFP-DOCUMENTARY-REQUIREMENTS.pdf',
-        label: 'Documentary Requirements',
-        type: 'document',
+        filename: 'bfp-application-form.pdf',
+        label: 'Application Form',
+        type: 'form',
+      },
+      {
+        filename: 'bfp/bfp-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
@@ -122,7 +127,13 @@ export const OFFICES = [
       'Pictures of the Area/Vicinity Map',
     ],
     applicableTo: [],
-    downloadables: [],
+    downloadables:[
+      {
+        filename: 'cpdo/cpdo-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -141,7 +152,13 @@ export const OFFICES = [
       'Business Permit Application',
     ],
     applicableTo: [],
-    downloadables: [],
+    downloadables:[
+      {
+        filename: 'cho/cho-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
+      },
+    ],
   },
 
   {
@@ -191,11 +208,11 @@ export const OFFICES = [
       },
     ],
     applicableTo: [],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'obo/OBO-BUSINESS-PERMIT-REQUIREMENTS-1.pdf',
-        label: 'Business Permit Requirements',
-        type: 'document',
+        filename: 'obo/obo-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
@@ -223,18 +240,19 @@ export const OFFICES = [
       'Industry-specific clearances (e.g., Hazardous Waste Generator Registration, DTI Accreditation, Certificate of Verification)',
     ],
     applicableTo: [],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'benro/BENRO.pdf',
-        label: 'BENRO Clearance Guide',
-        type: 'guide',
+        filename: 'benro/benro-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
 
   /* ══════════════════════════════════════════════════════════
      SPECIAL CLEARANCES
-     ══════════════════════════════════════════════════════════ */
+     ══════════════════════════════════════════════════════ */
+
 
   {
     name: 'Agriculture',
@@ -252,11 +270,11 @@ export const OFFICES = [
       'Certification from the Bureau of Animal Industry (BAI)'
     ],
     applicableTo: ['Agriculture-related Businesses'],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'agriculture/CITY-DEPARTMENT-OF-AGRICULTURE.pdf',
-        label: 'Agriculture Clearance Guide',
-        type: 'guide',
+        filename: 'agriculture/agriculture-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
@@ -277,11 +295,11 @@ export const OFFICES = [
       'Bureau of Animal Industry (BAI) Certification'
     ],
     applicableTo: ['Meat Products', 'Poultry Products'],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'veterinary/CITY-VET.pdf',
-        label: 'Veterinary Clearance Guide',
-        type: 'guide',
+        filename: 'veterinary/veterinary-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
@@ -317,17 +335,17 @@ export const OFFICES = [
       },
     ],
     applicableTo: ['Tourism-related Businesses'],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'tourism/TOURISM.pdf',
-        label: 'Tourism Clearance Guide',
-        type: 'guide',
+        filename: 'tourism/tourism-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
 
   {
-    name: 'City Admin',
+    name: 'Admin',
     fullName: 'City Administrator\'s Office',
     address: '',
     phone: '',
@@ -356,7 +374,7 @@ export const OFFICES = [
         items: [
           'COMELEC ID or Certification from COMELEC (2 photocopies)',
           'Certification of Barangay Residency (2 photocopies)',
-          "Certification from the market collector's office (1 original copy)"
+          'Certification from the market collector’s office (1 original copy)',
         ],
       },
       {
@@ -378,11 +396,11 @@ export const OFFICES = [
       },
     ],
     applicableTo: ['Manukan Country'],
-    downloadables: [
+    downloadables:[
       {
-        filename: 'cityadmin/CITY-ADMINISTRATOR.pdf',
-        label: 'City Administrator Clearance Guide',
-        type: 'guide',
+        filename: 'cityadmin/admin-requirements-checklist.pdf',
+        label: 'Requirements Checklist',
+        type: 'checklist',
       },
     ],
   },
@@ -404,7 +422,7 @@ export const OFFICES = [
       'Valid Franchise',
     ],
     applicableTo: ['Transportation-related Businesses'],
-    downloadables: [],
+    downloadables:[],
   },
 
   {
