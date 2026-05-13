@@ -482,6 +482,86 @@ button {
   color: var(--color-accent-warm-dark);
 }
 
+/* ────── Unclickable Phone Number ────── */
+.header__dropdown-item--unclickable {
+  cursor: default;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.header__dropdown-item--unclickable:hover {
+  background: transparent;
+  color: var(--color-text-primary);
+  padding-left: 16px;
+}
+
+.header__dropdown-item--unclickable:hover .header__dropdown-item-icon {
+  color: var(--color-accent-warm);
+}
+
+.header__drawer-dropdown-item--unclickable {
+  cursor: default;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.header__drawer-dropdown-item--unclickable:hover {
+  background: transparent;
+  color: var(--color-text-primary);
+  padding-left: 12px;
+}
+
+.header__drawer-dropdown-item--unclickable:hover .header__dropdown-item-icon {
+  color: var(--color-accent-warm);
+}
+
+/* ────── Mobile Drawer Dropdown — Always Visible ────── */
+@media (max-width: 768px) {
+  /* Hide the toggle button on mobile */
+  .header__drawer-dropdown-toggle {
+    display: none;
+  }
+
+  /* Contact Us label */
+  .header__drawer-contact-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    padding: 8px 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  /* Always show dropdown menu on mobile */
+  .header__drawer-dropdown-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: transparent;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  /* Style items in mobile drawer directly */
+  .header__drawer-dropdown-item {
+    background: transparent;
+    padding: 12px 0;
+    padding-left: 0;
+    border-bottom: none;
+    font-size: 0.9rem;
+    transition: padding-left var(--transition-base);
+  }
+
+  .header__drawer-dropdown-item:hover {
+    background: transparent;
+    padding-left: 0;
+    color: var(--color-accent-warm-dark);
+  }
+
+  .header__drawer-dropdown-item:hover .header__dropdown-item-icon {
+    color: var(--color-accent-warm-dark);
+  }
+}
+
 /* ────── Auth Section (Desktop) ────── */
 .header__auth {
   display: flex;
@@ -593,7 +673,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0;
-  background: var(--color-accent-light);
   border-radius: var(--radius-sm);
   overflow: hidden;
   margin-top: var(--spacing-sm);

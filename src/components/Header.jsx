@@ -36,6 +36,17 @@ const Header = ({ onRegisterClick, onSignInClick }) => {
 
   const closeMobile = () => setMobileOpen(false);
 
+  // Handle Facebook link - forces browser on mobile
+  const handleFacebookClick = (e) => {
+    closeMobile();
+    // On mobile, prevent default and open in browser
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      e.preventDefault();
+      window.location.href = "https://www.facebook.com/bacolodpermits";
+    }
+  };
+
   const headerClass = [
     "header",
     scrolled ? "header--scrolled" : "",
@@ -74,17 +85,23 @@ const Header = ({ onRegisterClick, onSignInClick }) => {
 
               {/* Dropdown Menu */}
               <div className={`header__dropdown-menu${contactDropdown ? " header__dropdown-menu--open" : ""}`}>
-                <a href="tel:4352606" className="header__dropdown-item">
+                <span className="header__dropdown-item header__dropdown-item--unclickable">
                   <MdCall className="header__dropdown-item-icon" />
                   435 2606
+                </span>
+                <a 
+                  href="https://www.facebook.com/bacolodpermits" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="header__dropdown-item"
+                  onClick={handleFacebookClick}
+                >
+                  <FaFacebook className="header__dropdown-item-icon" />
+                  Facebook
                 </a>
                 <a href="mailto:bplo_register@bacolodcity.gov.ph" className="header__dropdown-item">
                   <MdEmail className="header__dropdown-item-icon" />
                   bplo_register@bacolodcity.gov.ph
-                </a>
-                <a href="https://www.facebook.com/bacolodpermits" target="_blank" rel="noopener noreferrer" className="header__dropdown-item">
-                  <FaFacebook className="header__dropdown-item-icon" />
-                  Facebook
                 </a>
               </div>
             </div>
@@ -123,29 +140,32 @@ const Header = ({ onRegisterClick, onSignInClick }) => {
           <a href="/" className="header__drawer-link" onClick={closeMobile}>Home</a>
           
           <div className="header__drawer-dropdown">
-            <button
-              className="header__drawer-link header__drawer-dropdown-toggle"
-              onClick={() => setContactDropdown(!contactDropdown)}
-            >
+            {/* Contact Us label */}
+            <div className="header__drawer-link header__drawer-contact-label">
               Contact Us
-              <IoChevronDown className="header__dropdown-icon" />
-            </button>
-            {contactDropdown && (
-              <div className="header__drawer-dropdown-menu">
-                <a href="tel:4352606" className="header__drawer-dropdown-item" onClick={closeMobile}>
-                  <MdCall className="header__dropdown-item-icon" />
-                  435 2606
-                </a>
+            </div>
+            
+            {/* Contact items always visible on mobile - no toggle button */}
+            <div className="header__drawer-dropdown-menu">
+              <span className="header__drawer-dropdown-item header__drawer-dropdown-item--unclickable">
+                <MdCall className="header__dropdown-item-icon" />
+                435 2606
+              </span>
+              <a 
+                href="https://www.facebook.com/bacolodpermits" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="header__drawer-dropdown-item" 
+                onClick={handleFacebookClick}
+              >
+                <FaFacebook className="header__dropdown-item-icon" />
+                Facebook
+              </a>
                 <a href="mailto:bplo_register@bacolodcity.gov.ph" className="header__drawer-dropdown-item" onClick={closeMobile}>
-                  <MdEmail className="header__dropdown-item-icon" />
-                  bplo_register@bacolodcity.gov.ph
-                </a>
-                <a href="https://www.facebook.com/bacolodpermits" target="_blank" rel="noopener noreferrer" className="header__drawer-dropdown-item">
-                  <FaFacebook className="header__dropdown-item-icon" />
-                  Facebook
-                </a>
-              </div>
-            )}
+                <MdEmail className="header__dropdown-item-icon" />
+                bplo_register@bacolodcity.gov.ph
+              </a>
+            </div>
           </div>
         </nav>
 
