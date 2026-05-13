@@ -42,20 +42,6 @@
   letter-spacing: -1.5px;
 }
 
-/* Mobile title sizing */
-@media (max-width: 480px) {
-  .hero-renewal .hero__title {
-    /* Clamp handles mobile scaling naturally */
-  }
-}
-
-/* Tablet title sizing */
-@media (min-width: 481px) and (max-width: 768px) {
-  .hero-renewal .hero__title {
-    /* Clamp handles tablet scaling naturally */
-  }
-}
-
 /* Desktop title with clamp */
 @media (min-width: 769px) {
   .hero-renewal .hero__title {
@@ -327,10 +313,6 @@
     padding: var(--spacing-xl) var(--page-gutter);
   }
 
-  .stepper__label {
-    /* Clamp handles mobile scaling naturally */
-  }
-
   .stepper__subtitle {
     max-width: 100%;
     font-size: 0.9rem;
@@ -350,10 +332,6 @@
   .requirements-section__header {
     max-width: 100%;
     margin-bottom: var(--spacing-lg);
-  }
-
-  .requirements-section__title {
-    /* Clamp handles mobile scaling naturally */
   }
 
   .requirements-container {
