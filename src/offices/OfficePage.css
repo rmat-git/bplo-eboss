@@ -462,6 +462,7 @@
   .office-card__header {
     flex-wrap: wrap;
     padding: var(--spacing-md) 0;
+    padding-right: 4px;
   }
 }
 
@@ -470,6 +471,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   flex-wrap: wrap;
+  margin-right: auto;
 }
 
 .office-card__tag {
@@ -768,7 +770,7 @@
 }
 
 /* ============================================================
-   BARANGAY BUTTON — SHARED
+   BARANGAY BUTTON — WRAPPER
    ============================================================ */
 .office-card__barangay-wrapper {
   position: relative;
@@ -777,6 +779,9 @@
   z-index: 100;
 }
 
+/* ============================================================
+   BARANGAY BUTTON — SHARED
+   ============================================================ */
 .office-card__barangay-btn {
   background: var(--color-accent-warm);
   color: white;
@@ -793,22 +798,42 @@
   gap: var(--spacing-xs);
 }
 
-/* Mobile button */
+/* Mobile button — FIXED WIDTH */
 @media (max-width: 480px) {
   .office-card__barangay-btn {
     padding: 6px 12px;
     font-size: 0.75rem;
     gap: 4px;
-    margin-left: var(--spacing-xs);
+    width: 140px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
 }
 
 /* Tablet & Desktop button */
 @media (min-width: 481px) {
   .office-card__barangay-btn {
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: var(--spacing-sm);
     font-size: 0.85rem;
     margin-left: var(--spacing-md);
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 }
 
@@ -816,6 +841,14 @@
   background: var(--color-accent-warm-darker, #d97f1a);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
+}
+
+/* Mobile: remove shadow on hover */
+@media (max-width: 480px) {
+  .office-card__barangay-btn:hover {
+    box-shadow: none;
+    transform: none;
+  }
 }
 
 .office-card__barangay-btn:active {
@@ -869,6 +902,14 @@
   box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
 }
 
+/* Mobile: remove shadow and transform on selected hover */
+@media (max-width: 480px) {
+  .office-card__barangay-btn--selected:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
 .office-card__barangay-btn--selected:active {
   transform: translateY(0);
   background: white;
@@ -879,29 +920,10 @@
   box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
 }
 
-/* ============================================================
-   BARANGAY BUTTON — LOCKED WIDTH
-   ============================================================ */
-.office-card__barangay-btn {
-  width: 180px !important;
-  min-width: 180px !important;
-  max-width: 180px !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-}
-
-/* Mobile adjustment */
+/* Mobile: remove shadow on selected focus */
 @media (max-width: 480px) {
-  .office-card__barangay-btn {
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
+  .office-card__barangay-btn--selected:focus {
+    box-shadow: none;
   }
 }
 
@@ -1184,6 +1206,14 @@
   box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.3);
 }
 
+/* Mobile: remove shadow on download button hover */
+@media (max-width: 480px) {
+  .office-card__download-btn:hover {
+    box-shadow: none;
+    transform: none;
+  }
+}
+
 .office-card__download-btn:active {
   transform: translateY(0);
 }
@@ -1191,6 +1221,13 @@
 .office-card__download-btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+/* Mobile: remove shadow on download button focus */
+@media (max-width: 480px) {
+  .office-card__download-btn:focus {
+    box-shadow: none;
+  }
 }
 
 .office-card__download-btn-label {

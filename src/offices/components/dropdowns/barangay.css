@@ -17,6 +17,13 @@
   animation: dropdownSlideIn 0.25s ease-out;
 }
 
+/* Mobile: remove shadow effect */
+@media (max-width: 480px) {
+  .barangay-dropdown {
+    box-shadow: none;
+  }
+}
+
 @keyframes dropdownSlideIn {
   from {
     opacity: 0;
@@ -295,8 +302,23 @@
 }
 
 /* ============================================================
+   BARANGAY BUTTON — BASE LAYOUT
+   ============================================================ */
+.office-card__barangay-btn {
+  /* Maintain uniform width regardless of content */
+  min-width: 160px;
+  width: auto;
+  max-width: 200px;
+  
+  /* Ensure consistent content alignment */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+/* ============================================================
    BARANGAY BUTTON — SELECTED STATE
-   (Shared with OfficePage.css, but included here for reference)
    ============================================================ */
 .office-card__barangay-btn--selected {
   background: white;
@@ -311,6 +333,13 @@
   box-shadow: 0 4px 12px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
 }
 
+/* Mobile: remove shadow on selected button */
+@media (max-width: 480px) {
+  .office-card__barangay-btn--selected:hover {
+    box-shadow: none;
+  }
+}
+
 .office-card__barangay-btn--selected:active {
   transform: translateY(0);
   background: white;
@@ -319,6 +348,25 @@
 .office-card__barangay-btn--selected:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(var(--color-accent-warm-rgb, 234, 130, 22), 0.2);
+}
+
+/* Mobile: remove shadow on focus */
+@media (max-width: 480px) {
+  .office-card__barangay-btn--selected:focus {
+    box-shadow: none;
+  }
+}
+
+/* ============================================================
+   MOBILE SELECTED STATE — CENTER TEXT WITH FULL WIDTH
+   ============================================================ */
+@media (max-width: 480px) {
+  .office-card__barangay-btn--selected {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ============================================================

@@ -45,21 +45,21 @@
 /* Mobile title sizing */
 @media (max-width: 480px) {
   .hero-renewal .hero__title {
-    font-size: 1.75rem;
+    /* Clamp handles mobile scaling naturally */
   }
 }
 
 /* Tablet title sizing */
 @media (min-width: 481px) and (max-width: 768px) {
   .hero-renewal .hero__title {
-    font-size: 2.2rem;
+    /* Clamp handles tablet scaling naturally */
   }
 }
 
 /* Desktop title with clamp */
 @media (min-width: 769px) {
   .hero-renewal .hero__title {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: clamp(2rem, 7vw, 4.5rem);
   }
 }
 
@@ -328,7 +328,7 @@
   }
 
   .stepper__label {
-    font-size: 1.4rem;
+    /* Clamp handles mobile scaling naturally */
   }
 
   .stepper__subtitle {
@@ -353,7 +353,7 @@
   }
 
   .requirements-section__title {
-    font-size: 1.4rem;
+    /* Clamp handles mobile scaling naturally */
   }
 
   .requirements-container {
